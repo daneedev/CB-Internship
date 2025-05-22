@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nunjucks": "^3.2.4"
+  },
+  "name": "cb-praxe",
+  "version": "1.0.0",
+  "description": "Praxe",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc",
+    "serve": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daneedev/CB-Internship.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daneedev/CB-Internship/issues"
+  },
+  "homepage": "https://github.com/daneedev/CB-Internship#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/nunjucks": "^3.2.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
