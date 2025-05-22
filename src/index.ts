@@ -2,6 +2,8 @@ import express, { Request, Response } from "express"
 import dotenv from "dotenv"
 import nunjucks from "nunjucks"
 import fs from "fs"
+import path from "path"
+import { connect } from "./handlers/db"
 dotenv.config()
 
 const app = express()
@@ -13,6 +15,10 @@ nunjucks.configure('src/views', {
     watch: true
 });
 
+// DB
+connect()
+
+app.use("/public", express.static(path.join(__dirname, 'public')));
 
 app.get("/", function (req: Request, res: Response) {
     res.send("Hello world!")
