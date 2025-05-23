@@ -4,10 +4,12 @@ import nunjucks from "nunjucks"
 import fs from "fs"
 import path from "path"
 import { connect } from "./handlers/db"
+import flash from "connect-flash"
 dotenv.config()
 
 const app = express()
 
+app.use(flash())
 
 nunjucks.configure('src/views', {
     autoescape: true,
