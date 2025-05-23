@@ -7,6 +7,8 @@ import flash from "connect-flash"
 import session from "express-session"
 import bodyParser from "body-parser"
 import connectSessionSequelize from 'connect-session-sequelize';
+import loadPassport from "./handlers/passport"
+import passport from "passport"
 
 dotenv.config()
 
@@ -26,6 +28,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 // 1 day
     },
     store: new SequelizeStore({ db: db})
@@ -41,6 +44,11 @@ nunjucks.configure('src/views', {
 
 // DB
 connect()
+
+// PASSPORT
+app.use(passport.initialize())
+app.use(passport.session())
+loadPassport()
 
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
