@@ -67,12 +67,12 @@ section {
   display: flex;
   flex-direction: column;
 }
-.user-info section,
-.new-clients section,
-.total-sales section {
-  background: none;
-  border: none;
-  padding: 0;
+.user-info div,
+.new-clients div,
+.total-sales div {
+    display: flex;
+    gap: 5px;
+    justify-content: left;
 }
 .user-info .today {
   border: none;
