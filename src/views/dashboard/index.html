@@ -34,13 +34,13 @@
         </section>
       </section>
 
-      <section class="firstRow">
+      <section class="firstRow row">
         <section class="content">
           <p>Welcome back!</p>
           <h1>{{ webname }}</h1>
           <p>Glad to see you again</p>
         </section>
-        <section>
+        <section class="satisfaction">
           <h3>Satisfaction Rate</h3>
           <h4>From all surveys</h4>
           <section class="satisfactionGraph">
@@ -50,26 +50,32 @@
           <section class="satisfactionPercentage">
             <p class="percentige lower">0%</p>
             <p class="percentige higher">100%</p>
-            <h3 class="percentige current">{{ satisfactionRatePercentage }}</h3>
-            <p>Based on {{ totalSurveys }} surveys</p>
+            <div class="percentige current">
+              <h3>{{ staffSatisfaction }}</h3>
+              <p>Based on {{ totalSurveys }} surveys</p>
+            </div>
           </section>
         </section>
-        <section>
+        <section class="staffSatisfaction">
           <h3>Staff satisfaction</h3>
-          <p>Graded</p>
-          <h4>{{ currentStaff }} people</h4>
-          <section class="satisfactionGraph">
-            <canvas id="myChart2"></canvas>
-            <div>
-              <p>Satisfaction</p>
-              <h2>{{ stafSatisfactionRate }}</h2>
-              <p>Total Score</p>
+          <section>
+            <section>
+              <p>Graded</p>
+              <h4>{{ currentStaff }} people</h4>
+            </section>
+            <div class="satisfactionGraph">
+              <canvas id="myChart2"></canvas>
+              <div>
+                <p>Satisfaction</p>
+                <h2>{{ stafSatisfactionRate }}</h2>
+                <p>Total Score</p>
+              </div>
             </div>
           </section>
         </section>
       </section>
 
-      <section class="secondRow">
+      <section class="secondRow row">
         <section>
           <h3>Survey overview</h3>
           <p>
@@ -111,7 +117,7 @@
                 </div>
               </td>
               <td>
-                <div class="satisfaction">{{ survey.satisfaction }}</div>
+                <div class="tableSatisfaction">{{ survey.satisfaction }}</div>
               </td>
               <td>
                 <div class="experience">{{ survey.experience }}</div>
