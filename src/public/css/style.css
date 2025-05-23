@@ -8,7 +8,8 @@
 
 body {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -183,4 +184,23 @@ form {
 .auth-form label {
     font-size: 16px;
     font-weight: 700;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.alert p {
+    margin: 0;
+}
+.alert-green {
+    background-color: #90E39A;
+    color: #2E7D32;
+}
+.alert-red {
+    background-color: #FFB3B3;
+    color: #C62828;
 }
