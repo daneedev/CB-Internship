@@ -15,6 +15,7 @@ dotenv.config()
 // ROUTES
 import authRoutes from "./routes/auth.routes"
 import dashRoutes from "./routes/dash.routes"
+import businessRoutes from "./routes/business.routes"
 
 const app = express()
 
@@ -58,6 +59,7 @@ app.get("/", function (req: Request, res: Response) {
 
 app.use("/auth", authRoutes)
 app.use("/dash", dashRoutes)
+app.use("/business", businessRoutes)
 
 app.use("/", express.static(path.join(__dirname, 'views')));
 
