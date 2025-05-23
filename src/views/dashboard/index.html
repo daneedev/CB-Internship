@@ -6,8 +6,20 @@
     <link rel="stylesheet" href="/public/css/dashboard.css" />
   </head>
   <body>
-    {% block aside %}{% endblock %}
-    {% block pages %}{% endblock %}
-    {% block main %}{% endblock %}
+    <aside>
+      <h2>{{ webname }}</h2>
+      <br />
+      <nav>
+        <ul>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/dashboard/logs">Logs</a></li>
+          <h3>Account Pages</h3>
+          <li><a href="/dashboard/profile">Profile</a></li>
+          <li><a href="/dashboard/signin">Signin</a></li>
+          <li><a href="/dashboard/signup">Signup</a></li>
+        </ul>
+      </nav>
+    </aside>
+    {% block pages %}{% endblock %} {% block main %}{% endblock %}
   </body>
 </html>
