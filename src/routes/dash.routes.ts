@@ -3,7 +3,7 @@ import express, { Request, Response } from "express"
 const router = express.Router()
 
 router.get("/", function (req: Request, res: Response) {
-    res.render("dashboard/index.html", {
+    res.render("dashboard/dashboard.html", {
         title: "Dashboard",
         user: req.user,
         flash: req.flash("info"),
