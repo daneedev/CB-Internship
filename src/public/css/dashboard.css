@@ -1,0 +1,377 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d3748 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+}
+
+h2 {
+  padding: 20px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+section {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 11, 38, 0.74) 0%,
+    rgba(26, 31, 55, 0.5) 100%
+  );
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.users {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  max-height: 120px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.users > section {
+  flex: 1;
+}
+.users > section > section {
+  width: 70%;
+}
+/* Stats Cards */
+.user-info,
+.new-clients,
+.total-sales {
+  display: flex;
+  flex-direction: column;
+}
+.user-info section,
+.new-clients section,
+.total-sales section {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.user-info .today {
+  border: none;
+}
+.user-info h4,
+.new-clients h4,
+.total-sales h4 {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.todayUsers,
+.clients,
+.sales {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todayUsers h3,
+.clients h3,
+.sales h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+
+.todayUsers p,
+.clients p,
+.sales p {
+  font-size: 14px;
+  color: #4ade80;
+  font-weight: 600;
+}
+.firstRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 24px;
+}
+/* Welcome Section */
+.content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+  opacity: 0.3;
+}
+
+.content p:first-child {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
+}
+
+.content h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.content p:last-child {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Chart Sections */
+.satisfactionGraph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.satisfactionGraph canvas {
+  width: 120px;
+  height: 120px;
+}
+
+.satisfactionGraph div {
+  text-align: center;
+}
+
+.satisfactionGraph img {
+  width: 60px;
+  height: 60px;
+}
+
+.satisfactionPercentage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.percentige {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.percentige.current {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project {
+  display: flex;
+  align-items: center;
+}
+
+.project-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.xd-icon {
+  background-color: #470137;
+  color: #ff61f6;
+}
+
+.figma-icon {
+  background-color: #1e1e1e;
+  color: #0acf83;
+}
+
+.slack-icon {
+  background-color: #3f0e40;
+  color: #e01e5a;
+}
+
+.webflow-icon {
+  background-color: #4353ff;
+  color: white;
+}
+
+.invision-icon {
+  background-color: #ff3366;
+  color: white;
+}
+
+.jira-icon {
+  background-color: #0052cc;
+  color: white;
+}
+
+.project-name {
+  font-weight: 500;
+  color: white;
+}
+
+.members {
+  display: flex;
+}
+
+.member {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #64748b;
+  border: 2px solid #0f2350;
+  margin-left: -8px;
+  overflow: hidden;
+}
+
+.member:first-child {
+  margin-left: 0;
+}
+
+.budget {
+  font-weight: 600;
+  color: white;
+}
+
+.completion {
+  width: 100%;
+}
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
+  transition: width 0.3s ease;
+}
+
+.percentage {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: white;
+}
+
+/* Canvas styling */
+canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .content {
+    grid-column: span 1;
+  }
+
+  .content h1 {
+    font-size: 28px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 8px 12px;
+  }
+}
+
+/* Section specific styling */
+section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: white;
+}
+
+section h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #94a3b8;
+}
+
+section p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+section span {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+/* Large sections for charts */
+section:has(canvas) {
+  min-height: 200px;
+}
+
+/* Survey section full width */
+section:has(table) {
+  grid-column: 1 / -1;
+}
