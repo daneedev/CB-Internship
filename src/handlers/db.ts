@@ -15,4 +15,6 @@ async function connect() {
     }
 }
 
+db.sync()
+
 export {db, connect};
