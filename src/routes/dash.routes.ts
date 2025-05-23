@@ -1,12 +1,14 @@
 import express, { Request, Response } from "express"
+import { checkAuth } from "../handlers/checkAuth"
 
 const router = express.Router()
 
-router.get("/", function (req: Request, res: Response) {
-    res.render("dashboard/index.html", {
+router.get("/", checkAuth, function (req: Request, res: Response) {
+    res.render("dashboard/dashboard.html", {
         title: "Dashboard",
         user: req.user,
-        flash: req.flash("info"),
+        success: req.flash("success"),
+        error: req.flash("error"),
     })
 })
 
