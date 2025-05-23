@@ -1,139 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>{{title}}</title>
-</head>
+  </head>
 
-<body>
+  <body>
     {% block aside%}{% endblock %}
     <h2>Pages / {{ page }}</h2>
     <main>
-        <section class="user-info">
-            <section class="Today">
-                <h4>Today's users</h4>
-                <section class="todayUsers">
-                    <h3>{{ todayUsers }}</h3>
-                    <p> {{ percentage }}</p>
-                </section>
-            </section>
+      <section class="user-info">
+        <section class="Today">
+          <h4>Today's users</h4>
+          <section class="todayUsers">
+            <h3>{{ todayUsers }}</h3>
+            <p>{{ percentage }}</p>
+          </section>
         </section>
-        <section class="new-clients">
-            <h4>New clients</h4>
-            <section class="clients">
-                <h3>{{ newClients }}</h3>
-                <p> {{ percentage }}</p>
-            </section>
+      </section>
+      <section class="new-clients">
+        <h4>New clients</h4>
+        <section class="clients">
+          <h3>{{ newClients }}</h3>
+          <p>{{ percentage }}</p>
         </section>
-        <section class="total-sales">
-            <h4>Total sales</h4>
-            <section class="sales">
-                <h3>{{ totalSales }}</h3>
-                <p> {{ percentage }}</p>
-            </section>
+      </section>
+      <section class="total-sales">
+        <h4>Total sales</h4>
+        <section class="sales">
+          <h3>{{ totalSales }}</h3>
+          <p>{{ percentage }}</p>
         </section>
+      </section>
 
-        <section class="content">
-            <p>Welcome back!</p>
-            <h1>{{ webname }}</h1>
-            <p>Glad to see you again</p>
-        </section>
+      <section class="content">
+        <p>Welcome back!</p>
+        <h1>{{ webname }}</h1>
+        <p>Glad to see you again</p>
+      </section>
 
-        <section>
-            <h3>Satisfaction Rate</h3>
-            <h4>From all surveys</h4>
-            <section class="satisfactionGraph">
-                <canvas id="myChart"></canvas>
-                <div><img src="{{ emoticon }}" alt="emoticon"></div>
-            </section>
-            <section class="satisfactionPercentage">
-                <p class="percentige lower">0%</p>
-                <p class="percentige higher">100%</p>
-                <h3 class="percentige current">{{ satisfactionRatePercentage }}</h3>
-                <p>Based on {{ totalSurveys }} surveys</p>
-            </section>
+      <section>
+        <h3>Satisfaction Rate</h3>
+        <h4>From all surveys</h4>
+        <section class="satisfactionGraph">
+          <canvas id="myChart"></canvas>
+          <div><img src="{{ emoticon }}" alt="emoticon" /></div>
         </section>
-        <section>
-            <h3>Staff satisfaction</h3>
-            <p>Graded</p>
-            <h4>{{ currentStaff }} people</h4>
-            <section class="satisfactionGraph">
-                <canvas id="myChart2"></canvas>
-                <div>
-                    <p>Satisfaction</p>
-                    <h2>{{ stafSatisfactionRate }}</h2>
-                    <p>Total Score</p>
+        <section class="satisfactionPercentage">
+          <p class="percentige lower">0%</p>
+          <p class="percentige higher">100%</p>
+          <h3 class="percentige current">{{ satisfactionRatePercentage }}</h3>
+          <p>Based on {{ totalSurveys }} surveys</p>
+        </section>
+      </section>
+      <section>
+        <h3>Staff satisfaction</h3>
+        <p>Graded</p>
+        <h4>{{ currentStaff }} people</h4>
+        <section class="satisfactionGraph">
+          <canvas id="myChart2"></canvas>
+          <div>
+            <p>Satisfaction</p>
+            <h2>{{ stafSatisfactionRate }}</h2>
+            <p>Total Score</p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <h3>Survey overview</h3>
+        <p>
+          <span>({{ surveysMore }} {{moreLess}})</span> in {{ currentYear }}
+        </p>
+        <canvas id="myChart3"></canvas>
+      </section>
+      <section>
+        <canvas id="myChart4"></canvas>
+        <h3>Activity of <br />Users</h3>
+        <p><span>({{ surveysMore }} {{moreLess}})</span> than last week</p>
+      </section>
+
+      <section>
+        <h3>Surveys</h3>
+        <p>{{ surveysDone }} done this month</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Surveyors</th>
+              <th>Members</th>
+              <th>Budget</th>
+              <th>Completion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for survey in surveys %}
+            <tr>
+              <td>
+                <div class="project">
+                  <div class="project-icon {{ survey.iconClass }}">
+                    {{ survey.iconText }}
+                  </div>
+                  <div class="project-name">{{ survey.name }}</div>
                 </div>
-            </section>
-        </section>
-        <section>
-            <h3>Survey overview</h3>
-            <p><span>({{ surveysMore }} {{moreLess}})</span> in {{ currentYear }}</p>
-            <canvas id="myChart3"></canvas>
-        </section>
-        <section>
-            <canvas id="myChart4"></canvas>
-            <h3>Activity of <br>Users</h3>
-            <p><span>({{ surveysMore }} {{moreLess}})</span> than last week <p>
-        </section>
-        <section>
-            <h3>Surveys</h3>
-            <p>{{ surveysDone }} done this month</p>
-            <table>
-            <thead>
-                <tr>
-                    <th>Surveyors</th>
-                    <th>Members</th>
-                    <th>Budget</th>
-                    <th>Completion</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for survey in surveys %}
-                <tr>
-                    <td>
-                        <div class="project">
-                            <div class="project-icon {{ survey.iconClass }}">{{ survey.iconText }}</div>
-                            <div class="project-name">{{ survey.name }}</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="members">
-                            {% for member in survey.members %}
-                            <div class="member" title="{{ member.name }}" style="background-image: url('{{ member.avatar }}'); background-size: cover;"></div>
-                            {% endfor %}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="budget">{{ survey.budget }}</div>
-                    </td>
-                    <td>
-                        <div class="completion">
-                            <div class="percentage">{{ survey.completion }}</div>
-                            <div class="progress-container">
-                                <div class="progress-bar" data-completion="{{ survey.completion }}"></div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+              </td>
+              <td>
+                <div class="members">
+                  {% for member in survey.members %}
+                  <div
+                    class="member"
+                    title="{{ member.name }}"
+                    style="background-image: url('{{ member.avatar }}'); background-size: cover;"
+                  ></div>
+                  {% endfor %}
+                </div>
+              </td>
+              <td>
+                <div class="budget">{{ survey.budget }}</div>
+              </td>
+              <td>
+                <div class="completion">
+                  <div class="percentage">{{ survey.completion }}</div>
+                  <div class="progress-container">
+                    <div
+                      class="progress-bar"
+                      data-completion="{{ survey.completion }}"
+                    ></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
         <script>
-                // Set progress bar widths after the page loads
-                document.addEventListener('DOMContentLoaded', function() {
-                    const progressBars = document.querySelectorAll('.progress-bar');
-                    progressBars.forEach(bar => {
-                        const completion = bar.getAttribute('data-completion');
-                        bar.style.width = completion;
-                    });
-                });
+          // Set progress bar widths after the page loads
+          document.addEventListener("DOMContentLoaded", function () {
+            const progressBars = document.querySelectorAll(".progress-bar");
+            progressBars.forEach((bar) => {
+              const completion = bar.getAttribute("data-completion");
+              bar.style.width = completion;
+            });
+          });
         </script>
-        </section>
-
+      </section>
     </main>
-
-</body>
-
+  </body>
 </html>
