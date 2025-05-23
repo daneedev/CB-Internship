@@ -7,7 +7,9 @@
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d3748 100%);
+  background-image: url("/public/img/bg.png");
+  background-size: cover;
+  background-position: center;
   color: white;
   min-height: 100vh;
   display: flex;
@@ -106,6 +108,11 @@ section {
   color: #4ade80;
   font-weight: 600;
 }
+.row {
+  background: none;
+  border: none;
+  padding: 0;
+}
 .firstRow {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
@@ -113,20 +120,11 @@ section {
 }
 /* Welcome Section */
 .content {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: url("/public/img/welcome.png");
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
-}
-
-.content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
-  opacity: 0.3;
 }
 
 .content p:first-child {
@@ -145,13 +143,16 @@ section {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
 }
-
+.satisfaction {
+  padding-bottom: 3rem;
+}
 /* Chart Sections */
 .satisfactionGraph {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 20px 0;
+  flex-direction: column;
 }
 
 .satisfactionGraph canvas {
@@ -170,22 +171,62 @@ section {
 
 .satisfactionPercentage {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  position: relative;
+  height: 27%;
+  width: 100%;
 }
 
 .percentige {
   font-size: 14px;
   color: #94a3b8;
 }
-
+.lower {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+.higher {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
 .percentige.current {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 24px;
   font-weight: 700;
   color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
 }
-
+.staffSatisfaction {
+    display: flex;
+    flex-direction: column;
+}
+.staffSatisfaction > section {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+}
+.staffSatisfaction > section > section {
+    border: none;
+    background: none;
+}
+.secondRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
 /* Table Styles */
 table {
   width: 100%;
