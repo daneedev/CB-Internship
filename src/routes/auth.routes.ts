@@ -6,7 +6,7 @@ import passport from 'passport';
 const router = express.Router();
 
 router.get("/login", function (req: Request, res: Response) {
-    res.render("auth/login.html");
+    res.render("auth/login.html", { error: req.flash("error"), success: req.flash("success") });
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -16,7 +16,7 @@ router.post("/login", passport.authenticate("local", {
 }))
 
 router.get("/register", function (req: Request, res: Response)  {
-    res.render("auth/register.html");
+    res.render("auth/register.html", { error: req.flash("error"), success: req.flash("success") });
 });
 
 router.post("/register", async function (req: Request, res: Response) {
@@ -25,6 +25,17 @@ router.post("/register", async function (req: Request, res: Response) {
     const existingUser = await User.findOne({ where: { username } });
     if (existingUser) {
         req.flash("error", "Username already exists");
+        res.redirect("/auth/register");
+        return;
+    }
+    const existingEmail = await User.findOne({ where: { email } });
+    if (existingEmail) {
+        req.flash("error", "Email already exists");
+        res.redirect("/auth/register");
+        return;
+    }
+    if (password.length < 6) {
+        req.flash("error", "Password must be at least 6 characters long");
         res.redirect("/auth/register");
         return;
     }

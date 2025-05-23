@@ -1,0 +1,27 @@
+{% extends "auth/template.html" %}
+
+{% block content %}
+<form action="/auth/register" method="post" class="auth-form">
+    <h1 class="form-title">Register</h1>
+    {% if error.length > 0 %}
+        <div class="alert alert-red">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+    {% if success.length > 0 %}
+        <div class="alert alert-green">
+            <i class="fa-solid fa-circle-check"></i>
+            <p>{{ success }}</p>
+        </div>
+    {% endif %}
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <button type="submit" class="submit-button">Register</button>
+    <p class="form-footer">Already have an account? <a href="/auth/login">Login</a></p>
+
+{% endblock %}
