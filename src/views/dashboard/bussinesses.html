@@ -1,77 +1,98 @@
 {%extends "dashboard/template.html" %} {%block main %}
-<man>
+<main>
   <h2>Pages / {{ page }}</h2>
+  <div class="header">
+    <h1>Select Your Business</h1>
+    <p>Choose a business to view its dashboard and survey data</p>
+  </div>
   <div class="business-grid">
     {% for business in businesses %}
-    <div class="business-card" data-id="{{ business.id }}">
+    <div class="business-card" data-id="techcorp">
       <div class="card-header">
-        <div class="business-logo {{ business.logoClass }}">
-          {{ business.logoText }}
-        </div>
+        <div class="business-logo tech-logo">TC</div>
         <div class="selection-indicator"></div>
       </div>
 
       <div class="card-content">
-        <h3 class="business-name">{{ business.name }}</h3>
+        <h3 class="business-name">TechCorp Solutions</h3>
+        <div class="business-type">Technology</div>
+        <p class="business-description">
+          Leading software development and IT consulting company specializing in
+          enterprise solutions.
+        </p>
+
         <div class="stats-row">
           <div class="stat-item">
-            <div class="stat-number">{{ business.surveys }}</div>
+            <div class="stat-number">24</div>
             <div class="stat-label">Surveys</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">{{ business.responses }}</div>
+            <div class="stat-number">2.1K</div>
             <div class="stat-label">Responses</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">{{ business.satisfaction }}%</div>
+            <div class="stat-number">94%</div>
             <div class="stat-label">Satisfaction</div>
           </div>
         </div>
       </div>
 
       <div class="card-footer">
-        <div class="last-activity">{{ business.lastActivity }}</div>
-        <div class="status-badge status-{{ business.status }}">
-          {{ business.status }}
-        </div>
+        <div class="last-activity">2 hours ago</div>
+        <div class="status-badge status-active">active</div>
       </div>
     </div>
     {% endfor %}
+    <div class="selection-bar">
+      <div class="selection-content">
+        <div class="selection-info">
+          <span class="selection-text">Selected:</span>
+          <span class="selected-business-name" id="selectedBusinessName"
+            >None</span
+          >
+        </div>
+        <button class="continue-btn" id="continueBtn" disabled>Continue</button>
+      </div>
+    </div>
   </div>
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const businessCards = document.querySelectorAll('.business-card');
-        const selectedBusinessName = document.getElementById('selectedBusinessName');
-        const continueBtn = document.getElementById('continueBtn');
-        let selectedBusiness = null;
+  document.addEventListener("DOMContentLoaded", function () {
+    const businessCards = document.querySelectorAll(".business-card");
+    const selectedBusinessName = document.getElementById(
+      "selectedBusinessName"
+    );
+    const continueBtn = document.getElementById("continueBtn");
+    let selectedBusiness = null;
 
-        businessCards.forEach(card => {
-            card.addEventListener('click', function() {
-                // Remove selection from all cards
-                businessCards.forEach(c => c.classList.remove('selected'));
-                
-                // Add selection to clicked card
-                this.classList.add('selected');
-                
-                // Update selected business
-                selectedBusiness = this.dataset.id;
-                const businessName = this.querySelector('.business-name').textContent;
-                selectedBusinessName.textContent = businessName;
-                
-                // Enable continue button
-                continueBtn.disabled = false;
-            });
-        });
+    businessCards.forEach((card) => {
+      card.addEventListener("click", function () {
+        // Remove selection from all cards
+        businessCards.forEach((c) => c.classList.remove("selected"));
 
-        continueBtn.addEventListener('click', function() {
-            if (selectedBusiness) {
-                // Here you would typically redirect to the dashboard
-                console.log('Selected business:', selectedBusiness);
-                alert(`Redirecting to dashboard for: ${selectedBusinessName.textContent}`);
-                // window.location.href = `/dashboard?business=${selectedBusiness}`;
-            }
-        });
+        // Add selection to clicked card
+        this.classList.add("selected");
+
+        // Update selected business
+        selectedBusiness = this.dataset.id;
+        const businessName = this.querySelector(".business-name").textContent;
+        selectedBusinessName.textContent = businessName;
+
+        // Enable continue button
+        continueBtn.disabled = false;
+      });
     });
+
+    continueBtn.addEventListener("click", function () {
+      if (selectedBusiness) {
+        // Here you would typically redirect to the dashboard
+        console.log("Selected business:", selectedBusiness);
+        alert(
+          `Redirecting to dashboard for: ${selectedBusinessName.textContent}`
+        );
+        // window.location.href = `/dashboard?business=${selectedBusiness}`;
+      }
+    });
+  });
 </script>
 {% endblock %}
