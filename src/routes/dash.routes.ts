@@ -4,7 +4,7 @@ import { checkAuth } from "../handlers/checkAuth";
 const router = express.Router();
 
 router.get("/", checkAuth, function (req: Request, res: Response) {
-  res.render("dashboard/bussinesses.html", {
+  res.render("dashboard/dashboard.html", {
     title: "Dashboard",
     user: req.user,
     success: req.flash("success"),
