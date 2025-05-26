@@ -9,38 +9,37 @@
     {% for business in businesses %}
     <div class="business-card" data-id="techcorp">
       <div class="card-header">
-        <div class="business-logo tech-logo">TC</div>
+        <div class="business-logo tech-logo">{{ business.initials }}</div>
         <div class="selection-indicator"></div>
       </div>
 
       <div class="card-content">
-        <h3 class="business-name">TechCorp Solutions</h3>
-        <div class="business-type">Technology</div>
+        <h3 class="business-name">{{ business.name }}</h3>
+        <div class="business-type">N/A</div>
         <p class="business-description">
-          Leading software development and IT consulting company specializing in
-          enterprise solutions.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur est impedit fugiat at deserunt ducimus, quis aut repellendus et natus nihil ex doloremque laborum vel beatae voluptatem culpa placeat soluta.
         </p>
 
         <div class="stats-row">
           <div class="stat-item">
-            <div class="stat-number">24</div>
+            <div class="stat-number">N/A</div>
             <div class="stat-label">Surveys</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">2.1K</div>
+            <div class="stat-number">N/A</div>
             <div class="stat-label">Responses</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">94%</div>
+            <div class="stat-number">N/A %</div>
             <div class="stat-label">Satisfaction</div>
           </div>
         </div>
       </div>
 
-      <div class="card-footer">
+<!--     <div class="card-footer">
         <div class="last-activity">2 hours ago</div>
         <div class="status-badge status-active">active</div>
-      </div>
+      </div>--> 
     </div>
     {% endfor %}
     <div class="selection-bar">

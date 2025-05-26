@@ -7,8 +7,27 @@ import { Op } from "sequelize"
 
 const router = express.Router();
 
-router.get("/", checkAuth, function (req: Request, res: Response) {
-
+router.get("/", checkAuth, async function (req: Request, res: Response) {
+    const businesses = await Business.findAll({
+        where: { ownerId: (req.user as User).id },
+    })
+    
+    // Add initials for each business
+    const business = businesses.map(b => {
+        const words = b.name.split(' ');
+        const initials = words.map(word => word.charAt(0).toUpperCase()).join('');
+        return {
+            ...b.toJSON(),
+            initials: initials.substring(0, 2) // Limit to first 2 letters if needed
+        };
+    });
+    res.render("dashboard/businesses.html", {
+        title: "Businesses",
+        user: req.user,
+        success: req.flash("success"),
+        error: req.flash("error"),
+        businesses: business,
+    })
 })
 
 router.get("/:businessId", checkAuth, async function (req: Request, res: Response) {
