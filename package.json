@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "calc-percent": "^1.0.1",
     "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.5.0",
@@ -33,6 +34,7 @@
   "homepage": "https://github.com/daneedev/CB-Internship#readme",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/calc-percent": "^1.0.3",
     "@types/connect-flash": "^0.0.40",
     "@types/express": "^5.0.2",
     "@types/express-session": "^1.18.1",

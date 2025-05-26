@@ -4,6 +4,7 @@ import Business from "../models/Business"
 import User from "../models/User"
 import Rating from "../models/Rating"
 import { Op } from "sequelize"
+import calcPercent from "calc-percent"
 
 const router = express.Router();
 
@@ -80,6 +81,8 @@ router.get("/:businessId", checkAuth, async function (req: Request, res: Respons
             }
         }
     })
+    const averageSatisfaction = calcPercent(ratings.reduce((acc, rating) => Number(acc) + Number(rating.satisfaction), 0) / ratings.length || 0, 3);
+    const averageStaff = ratings.reduce((acc, rating) => acc + rating.staff, 0) / ratings.length || 0;
     res.render("dashboard/dashboard.html", {
         title: "Dashboard",
         user: req.user,
@@ -89,8 +92,9 @@ router.get("/:businessId", checkAuth, async function (req: Request, res: Respons
         surveysMonth: ratingsThisMonth,
         surveys: ratings,
         todaySurveys: ratingsToday,
-        todaySurveysPercent: ratingsYesterday > 0 ? (ratingsToday / ratingsYesterday) * 100 : 0,
-        page: business.name
+       // ratingsDifference: ,
+        page: business.name,
+        averageSatisfaction: averageSatisfaction
     })
     
 })

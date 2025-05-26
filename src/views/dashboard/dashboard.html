@@ -8,7 +8,7 @@
       <h4>Today's surveys</h4>
       <div class="todayUsers">
         <h3>{{ todaySurveys }}</h3>
-        <p>+{{ todaySurveysPercent }}%</p>
+      <!--  <p>+{{ ratingsDifference }}</p> -->
       </div>
     </section>
     <section class="new-clients">
@@ -44,7 +44,7 @@
         <p class="percentige lower">0%</p>
         <p class="percentige higher">100%</p>
         <div class="percentige current">
-          <h3>{{ staffSatisfaction }}</h3>
+          <h3>{{ averageSatisfaction }} %</h3>
           <p>Based on {{ totalSurveys }} surveys</p>
         </div>
       </section>
@@ -54,7 +54,7 @@
       <section>
         <section>
           <p>Graded</p>
-          <h4>{{ currentStaff }} people</h4>
+          <h4>{{ totalSurveys }} people</h4>
         </section>
         <div class="satisfactionGraph">
           <canvas id="myChart2"></canvas>
@@ -108,7 +108,7 @@
             </div>
           </td>
           <td>
-            <div class="tableSatisfaction">{{ survey.satisfaction }}</div>
+            <div class="tableSatisfaction">{{ survey.satisfaction }} / 3</div>
           </td>
           <td>
             <div class="experience">{{ survey.staff }} / 4</div>
