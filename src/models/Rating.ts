@@ -6,7 +6,7 @@ class Rating extends Model {
     public businessId!: string;
     public usage!: string;
     public satisfaction!: string;
-    public staff!: string;
+    public staff!: number;
     public futureFeatures!: string;
     public overallExperience!: number;
     public createdAt!: Date;
@@ -29,7 +29,7 @@ Rating.init(
             allowNull: false,
         },
         staff: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         futureFeatures: {
