@@ -1,0 +1,260 @@
+/* Business Grid */
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.business-card {
+    background: rgba(15, 35, 80, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.business-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+}
+
+.business-card.selected {
+    border-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.15);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+}
+
+.business-card.selected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.business-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.tech-logo {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.retail-logo {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.health-logo {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.finance-logo {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.food-logo {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.education-logo {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    color: white;
+}
+
+.selection-indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.business-card.selected .selection-indicator {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+}
+
+.selection-indicator::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.business-card.selected .selection-indicator::after {
+    opacity: 1;
+}
+
+.card-content {
+    margin-bottom: 20px;
+}
+
+.business-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.business-type {
+    font-size: 14px;
+    color: #8b5cf6;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.business-description {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.last-activity {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-active {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.status-inactive {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+/* Selection Summary */
+.selection-summary {
+    background: rgba(15, 35, 80, 0.4);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.selection-summary h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.selected-business-name {
+    color: #8b5cf6;
+    font-weight: 600;
+}
+
+.continue-btn {
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s ease;
+}
+
+.continue-btn:hover {
+    background: #9f7aea;
+}
+
+.continue-btn:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .business-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .stats-row {
+        gap: 8px;
+    }
+    
+    .card-footer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+}
