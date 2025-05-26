@@ -160,3 +160,23 @@ form {
 .submit-button:hover {
   background-color: var(--dark);
 }
+@media (max-width: 768px) {
+  .survey-container {
+    width: 100%;
+  }
+  .survey-intro,
+  .survey-content {
+    padding: 10px;
+  }
+  .question-title {
+    font-size: 18px;
+  }
+  .text-label,
+  .icon-label {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .star-rating label {
+    font-size: 30px;
+  }  
+}
