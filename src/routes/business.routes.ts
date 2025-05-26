@@ -9,7 +9,7 @@ router.post("/create", async function (req: Request, res: Response) {
   const user = req.user as User;
   Business.create({
     name: name,
-    userId: user.id,
+    ownerId: user.id,
   });
   req.flash("success", "Business created successfully");
   res.redirect("/dash");
@@ -21,7 +21,7 @@ router.post("/delete", function (req: Request, res: Response) {
   Business.destroy({
     where: {
       id: id,
-      userId: user.id,
+      ownerId: user.id,
     },
   })
     .then(() => {
