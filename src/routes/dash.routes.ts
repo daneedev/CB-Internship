@@ -5,7 +5,7 @@ import User from "../models/User"
 import Rating from "../models/Rating"
 import { Op } from "sequelize"
 
-const router = express.Router()
+const router = express.Router();
 
 router.get("/", checkAuth, function (req: Request, res: Response) {
 
@@ -74,4 +74,4 @@ router.get("/:businessId", checkAuth, async function (req: Request, res: Respons
     
 })
 
-export default router
+export default router;
