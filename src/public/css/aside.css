@@ -1,0 +1,144 @@
+/* Sidebar Styles */
+aside {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(15, 20, 25, 0.521) 0%, rgba(26, 35, 50, 0.637) 50%, rgba(45, 55, 72, 0.178) 100%);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px 0;
+}
+
+aside h2 {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 20px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+
+aside br {
+    display: block;
+    margin-bottom: 24px;
+}
+
+nav {
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 4px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+nav a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Active state for Dashboard link */
+nav a[href="/dashboard"] {
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+nav a[href="/dashboard"]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #8b5cf6;
+}
+
+
+nav h3 {
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 32px 20px 16px 20px;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 16px;
+}
+
+/* Adjust main content when sidebar is present */
+body {
+    margin-left: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    aside.open {
+        transform: translateX(0);
+    }
+    
+    body {
+        margin-left: 0;
+    }
+    
+    nav h3 {
+        padding: 24px 20px 12px 20px;
+        margin-top: 12px;
+    }
+}
+
+/* Mobile menu toggle button */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: rgba(139, 92, 246, 0.9);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
