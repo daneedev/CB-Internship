@@ -2,10 +2,21 @@ import express, { Request, Response } from 'express';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-import { checkNotAuth } from '../handlers/checkAuth';
+import { checkAuth, checkNotAuth } from '../handlers/checkAuth';
 
 
 const router = express.Router();
+
+router.get("/logout", checkAuth, function (req: Request, res: Response) {
+    req.logout(function(err) {
+        if (err) {
+            req.flash("error", "Error logging out");
+            return res.redirect("/dash");
+        }
+        req.flash("success", "Logged out successfully");
+        res.redirect("/auth/login");
+    });
+});
 
 router.use(checkNotAuth);
 
