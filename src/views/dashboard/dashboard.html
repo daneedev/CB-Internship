@@ -1,6 +1,4 @@
-{%extends "dashboard/template.html" %} 
-
-{%block main %}
+{%extends "dashboard/template.html" %} {%block main %}
 <main>
   <h2>Pages / {{ page }}</h2>
   <section class="users">
@@ -8,7 +6,11 @@
       <h4>Today's surveys</h4>
       <div class="todayUsers">
         <h3>{{ todaySurveys }}</h3>
-      <!--  <p>+{{ ratingsDifference }}</p> -->
+        {% if surveyDifference > 0 %}
+        <p class="positive difference">+ {{ surveyDifference }}</p>
+        {% else %}
+        <p class="negative difference">- {{ surveyDifference }}</p>
+        {% endif %}
       </div>
     </section>
     <section class="new-clients">
