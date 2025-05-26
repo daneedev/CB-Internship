@@ -249,7 +249,7 @@
 .selection-bar {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 250px;
   right: 0;
   background: rgba(15, 35, 80, 0.95);
   backdrop-filter: blur(20px);
