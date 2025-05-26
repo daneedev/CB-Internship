@@ -47,6 +47,11 @@ section {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+section p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
 .users {
   display: flex;
   justify-content: space-between;
@@ -102,12 +107,12 @@ section {
   font-weight: 700;
   color: white;
 }
-
-.todayUsers p,
-.clients p,
-.sales p {
-  font-size: 14px;
+.positive {
   color: #4ade80;
+  font-weight: 600;
+}
+.negative {
+  color: #f87171;
   font-weight: 600;
 }
 .row {
@@ -396,12 +401,6 @@ section h4 {
   font-weight: 500;
   margin-bottom: 16px;
   color: #94a3b8;
-}
-
-section p {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 8px;
 }
 
 section span {
