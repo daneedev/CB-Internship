@@ -4,7 +4,7 @@ import { DataTypes, Model } from "sequelize";
 class Business extends Model {
     public id!: number;
     public name!: string;
-    public ownerId!: string;
+    public ownerId!: number;
     public createdAt!: Date;
     public updatedAt!: Date;
 }

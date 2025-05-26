@@ -1,13 +1,16 @@
-{%extends "dashboard/template.html" %} 
-
-{%block main %}
+{%extends "dashboard/template.html" %} {%block main %}
 <main>
+  <h2>Pages / {{ page }}</h2>
   <section class="users">
     <section class="user-info">
-      <h4>Today's users</h4>
+      <h4>Today's surveys</h4>
       <div class="todayUsers">
-        <h3>{{ todayUsers }}</h3>
-        <p>{{ percentage }}</p>
+        <h3>{{ todaySurveys }}</h3>
+        {% if surveyDifference > 0 %}
+        <p class="positive difference">+ {{ surveyDifference }}</p>
+        {% else %}
+        <p class="negative difference">- {{ surveyDifference }}</p>
+        {% endif %}
       </div>
     </section>
     <section class="new-clients">
@@ -29,7 +32,7 @@
   <section class="firstRow row">
     <section class="content">
       <p>Welcome back!</p>
-      <h1>{{ webname }}</h1>
+      <h1>{{ user.username }}</h1>
       <p>Glad to see you again</p>
     </section>
     <section class="satisfaction">
@@ -43,7 +46,7 @@
         <p class="percentige lower">0%</p>
         <p class="percentige higher">100%</p>
         <div class="percentige current">
-          <h3>{{ staffSatisfaction }}</h3>
+          <h3>{{ averageSatisfaction }} %</h3>
           <p>Based on {{ totalSurveys }} surveys</p>
         </div>
       </section>
@@ -53,7 +56,7 @@
       <section>
         <section>
           <p>Graded</p>
-          <h4>{{ currentStaff }} people</h4>
+          <h4>{{ totalSurveys }} people</h4>
         </section>
         <div class="satisfactionGraph">
           <canvas id="myChart2"></canvas>
@@ -86,10 +89,10 @@
     <table>
       <thead>
         <tr>
-          <th>Surveyors</th>
+          <th>ID</th>
           <th>Usage</th>
           <th>Satisfaction</th>
-          <th>Experience</th>
+          <th>Staff satisfaction</th>
           <th>Overall</th>
         </tr>
       </thead>
@@ -98,7 +101,7 @@
         <tr>
           <td>
             <div class="surveyor">
-              <div class="survey-name">{{ survey.name }}</div>
+              <div class="survey-name">{{ survey.id }}</div>
             </div>
           </td>
           <td>
@@ -107,18 +110,18 @@
             </div>
           </td>
           <td>
-            <div class="tableSatisfaction">{{ survey.satisfaction }}</div>
+            <div class="tableSatisfaction">{{ survey.satisfaction }} / 3</div>
           </td>
           <td>
-            <div class="experience">{{ survey.experience }}</div>
+            <div class="experience">{{ survey.staff }} / 4</div>
           </td>
           <td>
             <div class="completion">
-              <div class="percentage">{{ survey.overall }}</div>
+              <div class="percentage">{{ survey.overallExpierence }}</div>
               <div class="progress-container">
                 <div
                   class="progress-bar"
-                  data-completion="{{ survey.overall }}"
+                  data-completion="{{ survey.overallExpierence  }}"
                 ></div>
               </div>
             </div>

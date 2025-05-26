@@ -4,23 +4,29 @@
     <meta charset="UTF-8" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/public/css/dashboard.css" />
+    <link rel="stylesheet" href="/public/css/aside.css" />
+    <link rel="stylesheet" href="/public/css/bussinesses.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <aside>
-      <h2>{{ webname }}</h2>
+      <h2>Test</h2>
       <br />
       <nav>
         <ul>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/dashboard/logs">Logs</a></li>
+          <li><a href="/dash">Dashboard</a></li>
+          <li><a href="/dash/logs">Logs</a></li>
           <h3>Account Pages</h3>
-          <li><a href="/dashboard/profile">Profile</a></li>
-          <li><a href="/dashboard/signin">Signin</a></li>
-          <li><a href="/dashboard/signup">Signup</a></li>
+          <li><a href="/dash/profile">Profile</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
         </ul>
       </nav>
     </aside>
-    <h2>Pages / {{ page }}</h2>
-   {% block main %}{% endblock %}
+    {% block main %}{% endblock %}
   </body>
 </html>

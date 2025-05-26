@@ -1,0 +1,190 @@
+{%extends "dashboard/template.html" %} {%block main %}
+<main>
+  <h2>Pages / {{ page }}</h2>
+  <div class="header">
+    <div class="header-content">
+      <h1>Select Your Business</h1>
+      <p>Choose a business to view its dashboard and survey data</p>
+    </div>
+    <button class="add-business-btn" id="addBusinessBtn">Add Business</button>
+  </div>
+
+  <!-- Add Business Modal -->
+  <div class="modal-overlay" id="addBusinessModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Business</h3>
+        <button class="modal-close" id="closeAddBusinessModal">&times;</button>
+      </div>
+
+      <form action="/business/create" method="post" id="addBusinessForm">
+        <div class="form-group">
+          <label class="form-label" for="businessName">Business Name</label>
+          <input
+            type="text"
+            id="businessName"
+            class="form-input"
+            placeholder="Enter business name"
+            name="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="businessDescription"
+            >Description</label
+          >
+          <textarea
+            id="businessDescription"
+            class="form-textarea"
+            placeholder="Brief description of your business"
+            name="description"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Choose Logo Style</label>
+          <div class="logo-selector">
+            <div class="logo-option tech-logo" data-class="tech-logo">TC</div>
+            <div class="logo-option retail-logo" data-class="retail-logo">
+              RT
+            </div>
+            <div class="logo-option health-logo" data-class="health-logo">
+              HC
+            </div>
+            <div class="logo-option finance-logo" data-class="finance-logo">
+              FN
+            </div>
+            <div class="logo-option food-logo" data-class="food-logo">FD</div>
+            <div class="logo-option education-logo" data-class="education-logo">
+              ED
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="cancelAddBusiness">
+            Cancel
+          </button>
+          <button type="submit" class="btn-create">Create Business</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="business-grid">
+    {% for business in businesses %}
+    <div class="business-card" data-id="{{ business.id }}">
+      <div class="card-header">
+        <div class="business-logo tech-logo">{{ business.initials }}</div>
+        <div class="selection-indicator"></div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="business-name">{{ business.name }}</h3>
+        <div class="business-type">N/A</div>
+        <p class="business-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+          est impedit fugiat at deserunt ducimus, quis aut repellendus et natus
+          nihil ex doloremque laborum vel beatae voluptatem culpa placeat
+          soluta.
+        </p>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">N/A</div>
+            <div class="stat-label">Surveys</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">N/A</div>
+            <div class="stat-label">Responses</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">N/A %</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!--     <div class="card-footer">
+        <div class="last-activity">2 hours ago</div>
+        <div class="status-badge status-active">active</div>
+      </div>-->
+    </div>
+    {% endfor %}
+    <div class="selection-bar">
+      <div class="selection-content">
+        <div class="selection-info">
+          <span class="selection-text">Selected:</span>
+          <span class="selected-business-name" id="selectedBusinessName"
+            >None</span
+          >
+        </div>
+        <button class="continue-btn" id="continueBtn" disabled>Continue</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const businessCards = document.querySelectorAll(".business-card");
+    const selectedBusinessName = document.getElementById(
+      "selectedBusinessName"
+    );
+    const continueBtn = document.getElementById("continueBtn");
+    const addBusinessBtn = document.getElementById("addBusinessBtn");
+    const addBusinessModal = document.getElementById("addBusinessModal");
+    const closeAddBusinessModal = document.getElementById(
+      "closeAddBusinessModal"
+    );
+    const cancelAddBusiness = document.getElementById("cancelAddBusiness");
+    const logoOptions = document.querySelectorAll(".logo-option");
+
+    let selectedBusiness = null;
+    let selectedLogoClass = "";
+
+    // Business selection functionality
+    businessCards.forEach((card) => {
+      card.addEventListener("click", function () {
+        businessCards.forEach((c) => c.classList.remove("selected"));
+        this.classList.add("selected");
+
+        selectedBusiness = this.dataset.id;
+        const businessName = this.querySelector(".business-name").textContent;
+        selectedBusinessName.textContent = businessName;
+        continueBtn.disabled = false;
+      });
+    });
+
+    continueBtn.addEventListener("click", function () {
+      if (selectedBusiness) {
+        console.log("Selected business:", selectedBusiness);
+        window.location.href = `/dash/${selectedBusiness}`;
+      }
+    });
+
+    // Modal functionality
+    addBusinessBtn.addEventListener("click", () => {
+      addBusinessModal.classList.add("active");
+    });
+
+    function closeModal() {
+      addBusinessModal.classList.remove("active");
+      addBusinessForm.reset();
+      logoOptions.forEach((option) => option.classList.remove("selected"));
+      selectedLogoClass = "";
+    }
+
+    closeAddBusinessModal.addEventListener("click", closeModal);
+    cancelAddBusiness.addEventListener("click", closeModal);
+
+    // Close modal when clicking outside
+    addBusinessModal.addEventListener("click", function (e) {
+      if (e.target === addBusinessModal) {
+        closeModal();
+      }
+    });
+
+  
+  });
+</script>
+{% endblock %}

@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/survey.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{{ title }}</title>
 </head>
@@ -19,6 +19,7 @@
         </section>
         <section class="survey-content">
             <form action="/survey/submit" method="post">
+                <input type="hidden" name="businessId" value="{{ businessId }}">
                 <div class="survey-question">
                     <p class="question-title">How often do you use our product/service? <span class="required">*</span></p>
                     <div class="question-options">
@@ -37,17 +38,17 @@
                 <div class="survey-question">
                     <p class="question-title">How satisfied are you with our product? <span class="required">*</span></p>
                     <div class="question-options">
-                        <input type="radio" name="satisfaction" value="dissatisfied" id="dissatisfied" required>
+                        <input type="radio" name="satisfaction" value="1" id="dissatisfied" required>
                         <label class="icon-label" for="dissatisfied">
                             <i class="fa-solid fa-face-frown"></i>                            
                             <p>Dissatisfied</p>
                         </label>
-                        <input type="radio" name="satisfaction" value="neutral" id="neutral" required>
+                        <input type="radio" name="satisfaction" value="2" id="neutral" required>
                         <label class="icon-label" for="neutral">
                             <i class="fa-solid fa-face-meh"></i>
                             <p>Neutral</p>
                         </label>
-                        <input type="radio" name="satisfaction" value="positive" id="satisfied" required>
+                        <input type="radio" name="satisfaction" value="3" id="satisfied" required>
                         <label class="icon-label" for="satisfied">
                             <i class="fa-solid fa-face-smile"></i>
                             <p>Positive</p>
@@ -57,13 +58,13 @@
                 <div class="survey-question">
                     <p class="question-title">How would rate our staff? <span class="required">*</span></p>
                     <div class="question-options">
-                        <input type="radio" name="staff_rating" value="poor" id="poor" required>
+                        <input type="radio" name="staff_rating" value="1" id="poor" required>
                         <label class="text-label" for="poor">Poor</label>
-                        <input type="radio" name="staff_rating" value="average" id="average" required>
+                        <input type="radio" name="staff_rating" value="2" id="average" required>
                         <label class="text-label" for="average">Average</label>
-                        <input type="radio" name="staff_rating" value="good" id="good" required>
+                        <input type="radio" name="staff_rating" value="3" id="good" required>
                         <label class="text-label" for="good">Good</label>
-                        <input type="radio" name="staff_rating" value="excellent" id="excellent" required>
+                        <input type="radio" name="staff_rating" value="4" id="excellent" required>
                         <label class="text-label" for="excellent">Excellent</label>
                     </div>
                 </div>
