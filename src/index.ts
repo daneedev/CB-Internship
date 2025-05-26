@@ -51,7 +51,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 loadPassport()
 
-app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use("/public", express.static('src/public'));
 
 app.get("/", function (req: Request, res: Response) {
     res.send("Hello world!")
@@ -61,7 +61,7 @@ app.use("/auth", authRoutes)
 app.use("/dash", dashRoutes)
 app.use("/business", businessRoutes)
 
-app.use("/", express.static(path.join(__dirname, 'views')));
+app.use("/", express.static('src/views'));
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening on ${process.env.PORT}`)
