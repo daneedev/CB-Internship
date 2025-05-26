@@ -2,8 +2,12 @@ import express, { Request, Response } from 'express';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
+import { checkNotAuth } from '../handlers/checkAuth';
+
 
 const router = express.Router();
+
+router.use(checkNotAuth);
 
 router.get("/login", function (req: Request, res: Response) {
     res.render("auth/login.html", { error: req.flash("error"), success: req.flash("success") });
