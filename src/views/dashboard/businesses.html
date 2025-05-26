@@ -2,9 +2,79 @@
 <main>
   <h2>Pages / {{ page }}</h2>
   <div class="header">
-    <h1>Select Your Business</h1>
-    <p>Choose a business to view its dashboard and survey data</p>
+    <div class="header-content">
+      <h1>Select Your Business</h1>
+      <p>Choose a business to view its dashboard and survey data</p>
+    </div>
+    <button class="add-business-btn" id="addBusinessBtn">Add Business</button>
   </div>
+
+  <!-- Add Business Modal -->
+  <div class="modal-overlay" id="addBusinessModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Business</h3>
+        <button class="modal-close" id="closeAddBusinessModal">&times;</button>
+      </div>
+
+      <form action="/business/create" method="post" id="addBusinessForm">
+        <div class="form-group">
+          <label class="form-label" for="businessName">Business Name</label>
+          <input
+            type="text"
+            id="businessName"
+            class="form-input"
+            placeholder="Enter business name"
+            name="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="businessDescription"
+            >Description</label
+          >
+          <textarea
+            id="businessDescription"
+            class="form-textarea"
+            placeholder="Brief description of your business"
+            name="description"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Choose Logo Style</label>
+          <div class="logo-selector">
+            <div class="logo-option tech-logo" data-class="tech-logo">TC</div>
+            <div class="logo-option retail-logo" data-class="retail-logo">
+              RT
+            </div>
+            <div class="logo-option health-logo" data-class="health-logo">
+              HC
+            </div>
+            <div class="logo-option finance-logo" data-class="finance-logo">
+              FN
+            </div>
+            <div class="logo-option food-logo" data-class="food-logo">FD</div>
+            <div class="logo-option education-logo" data-class="education-logo">
+              ED
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="cancelAddBusiness">
+            Cancel
+          </button>
+          <button type="submit" form="addBusinessForm" class="btn-create">
+            Create Business
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
   <div class="business-grid">
     {% for business in businesses %}
     <div class="business-card" data-id="{{ business.id }}">
@@ -17,7 +87,10 @@
         <h3 class="business-name">{{ business.name }}</h3>
         <div class="business-type">N/A</div>
         <p class="business-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur est impedit fugiat at deserunt ducimus, quis aut repellendus et natus nihil ex doloremque laborum vel beatae voluptatem culpa placeat soluta.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+          est impedit fugiat at deserunt ducimus, quis aut repellendus et natus
+          nihil ex doloremque laborum vel beatae voluptatem culpa placeat
+          soluta.
         </p>
 
         <div class="stats-row">
@@ -36,10 +109,10 @@
         </div>
       </div>
 
-<!--     <div class="card-footer">
+      <!--     <div class="card-footer">
         <div class="last-activity">2 hours ago</div>
         <div class="status-badge status-active">active</div>
-      </div>--> 
+      </div>-->
     </div>
     {% endfor %}
     <div class="selection-bar">
@@ -62,32 +135,89 @@
       "selectedBusinessName"
     );
     const continueBtn = document.getElementById("continueBtn");
-    let selectedBusiness = null;
+    const addBusinessBtn = document.getElementById("addBusinessBtn");
+    const addBusinessModal = document.getElementById("addBusinessModal");
+    const closeAddBusinessModal = document.getElementById(
+      "closeAddBusinessModal"
+    );
+    const cancelAddBusiness = document.getElementById("cancelAddBusiness");
+    const addBusinessForm = document.getElementById("addBusinessForm");
+    const logoOptions = document.querySelectorAll(".logo-option");
 
+    let selectedBusiness = null;
+    let selectedLogoClass = "";
+
+    // Business selection functionality
     businessCards.forEach((card) => {
       card.addEventListener("click", function () {
-        // Remove selection from all cards
         businessCards.forEach((c) => c.classList.remove("selected"));
-
-        // Add selection to clicked card
         this.classList.add("selected");
 
-        // Update selected business
         selectedBusiness = this.dataset.id;
         const businessName = this.querySelector(".business-name").textContent;
         selectedBusinessName.textContent = businessName;
-
-        // Enable continue button
         continueBtn.disabled = false;
       });
     });
 
     continueBtn.addEventListener("click", function () {
       if (selectedBusiness) {
-        // Here you would typically redirect to the dashboard
         console.log("Selected business:", selectedBusiness);
-        window.location.href = `/dash/${selectedBusiness}`;
+        alert(
+          `Redirecting to dashboard for: ${selectedBusinessName.textContent}`
+        );
       }
+    });
+
+    // Modal functionality
+    addBusinessBtn.addEventListener("click", () => {
+      addBusinessModal.classList.add("active");
+    });
+
+    function closeModal() {
+      addBusinessModal.classList.remove("active");
+      addBusinessForm.reset();
+      logoOptions.forEach((option) => option.classList.remove("selected"));
+      selectedLogoClass = "";
+    }
+
+    closeAddBusinessModal.addEventListener("click", closeModal);
+    cancelAddBusiness.addEventListener("click", closeModal);
+
+    // Close modal when clicking outside
+    addBusinessModal.addEventListener("click", function (e) {
+      if (e.target === addBusinessModal) {
+        closeModal();
+      }
+    });
+
+    // Logo selection
+    logoOptions.forEach((option) => {
+      option.addEventListener("click", function () {
+        logoOptions.forEach((opt) => opt.classList.remove("selected"));
+        this.classList.add("selected");
+        selectedLogoClass = this.dataset.class;
+      });
+    });
+
+    // Form submission
+    addBusinessForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById("businessName").value,
+        type: document.getElementById("businessType").value,
+        description: document.getElementById("businessDescription").value,
+        logoClass: selectedLogoClass,
+      };
+
+      console.log("New business data:", formData);
+
+      // Here you would typically send the data to your server
+      // fetch('/api/businesses', { method: 'POST', body: JSON.stringify(formData) })
+
+      alert("Business created successfully!");
+      closeModal();
     });
   });
 </script>
