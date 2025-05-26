@@ -21,6 +21,7 @@ router.get("/", checkAuth, async function (req: Request, res: Response) {
             initials: initials.substring(0, 2) // Limit to first 2 letters if needed
         };
     });
+
     res.render("dashboard/businesses.html", {
         title: "Businesses",
         user: req.user,
@@ -89,6 +90,7 @@ router.get("/:businessId", checkAuth, async function (req: Request, res: Respons
         surveys: ratings,
         todaySurveys: ratingsToday,
         todaySurveysPercent: ratingsYesterday > 0 ? (ratingsToday / ratingsYesterday) * 100 : 0,
+        page: business.name
     })
     
 })

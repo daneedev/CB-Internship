@@ -7,7 +7,7 @@
   </div>
   <div class="business-grid">
     {% for business in businesses %}
-    <div class="business-card" data-id="techcorp">
+    <div class="business-card" data-id="{{ business.id }}">
       <div class="card-header">
         <div class="business-logo tech-logo">{{ business.initials }}</div>
         <div class="selection-indicator"></div>
@@ -86,10 +86,7 @@
       if (selectedBusiness) {
         // Here you would typically redirect to the dashboard
         console.log("Selected business:", selectedBusiness);
-        alert(
-          `Redirecting to dashboard for: ${selectedBusinessName.textContent}`
-        );
-        // window.location.href = `/dashboard?business=${selectedBusiness}`;
+        window.location.href = `/dash/${selectedBusiness}`;
       }
     });
   });
