@@ -7,10 +7,14 @@
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-    background: linear-gradient(135deg, #001440 0%, #0046ad 50%, #001440 100%);
+  background: linear-gradient(135deg, #001440 0%, #0046ad 50%, #001440 100%);
   color: white;
   min-height: 100vh;
   display: flex;
+}
+button {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
 }
 
 h2 {
@@ -68,9 +72,9 @@ section {
 .user-info div,
 .new-clients div,
 .total-sales div {
-    display: flex;
-    gap: 5px;
-    justify-content: left;
+  display: flex;
+  gap: 5px;
+  justify-content: left;
 }
 .user-info .today {
   border: none;
@@ -207,23 +211,23 @@ section {
   width: 100%;
 }
 .staffSatisfaction {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .staffSatisfaction > section {
-    border: none;
-    background: none;
-    display: flex;
-    align-items: center;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
 }
 .staffSatisfaction > section > section {
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 }
 .secondRow {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
 }
 /* Table Styles */
 table {
