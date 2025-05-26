@@ -1,0 +1,77 @@
+{%extends "dashboard/template.html" %} {%block main %}
+<man>
+  <h2>Pages / {{ page }}</h2>
+  <div class="business-grid">
+    {% for business in businesses %}
+    <div class="business-card" data-id="{{ business.id }}">
+      <div class="card-header">
+        <div class="business-logo {{ business.logoClass }}">
+          {{ business.logoText }}
+        </div>
+        <div class="selection-indicator"></div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="business-name">{{ business.name }}</h3>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">{{ business.surveys }}</div>
+            <div class="stat-label">Surveys</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ business.responses }}</div>
+            <div class="stat-label">Responses</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ business.satisfaction }}%</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="last-activity">{{ business.lastActivity }}</div>
+        <div class="status-badge status-{{ business.status }}">
+          {{ business.status }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const businessCards = document.querySelectorAll('.business-card');
+        const selectedBusinessName = document.getElementById('selectedBusinessName');
+        const continueBtn = document.getElementById('continueBtn');
+        let selectedBusiness = null;
+
+        businessCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selection from all cards
+                businessCards.forEach(c => c.classList.remove('selected'));
+                
+                // Add selection to clicked card
+                this.classList.add('selected');
+                
+                // Update selected business
+                selectedBusiness = this.dataset.id;
+                const businessName = this.querySelector('.business-name').textContent;
+                selectedBusinessName.textContent = businessName;
+                
+                // Enable continue button
+                continueBtn.disabled = false;
+            });
+        });
+
+        continueBtn.addEventListener('click', function() {
+            if (selectedBusiness) {
+                // Here you would typically redirect to the dashboard
+                console.log('Selected business:', selectedBusiness);
+                alert(`Redirecting to dashboard for: ${selectedBusinessName.textContent}`);
+                // window.location.href = `/dashboard?business=${selectedBusiness}`;
+            }
+        });
+    });
+</script>
+{% endblock %}
