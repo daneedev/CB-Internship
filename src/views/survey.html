@@ -19,6 +19,7 @@
         </section>
         <section class="survey-content">
             <form action="/survey/submit" method="post">
+                <input type="hidden" name="businessId" value="{{ businessId }}">
                 <div class="survey-question">
                     <p class="question-title">How often do you use our product/service? <span class="required">*</span></p>
                     <div class="question-options">
