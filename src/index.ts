@@ -9,6 +9,8 @@ import passport from "passport";
 import path from "path";
 import { connect, db } from "./handlers/db";
 import loadPassport from "./handlers/passport";
+import { rateLimit } from 'express-rate-limit'
+
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ import apiRoutes from "./routes/api.routes"
 const app = express();
 
 app.use(flash());
+
 
 const SequelizeStore = connectSessionSequelize(session.Store);
 
@@ -56,6 +59,21 @@ app.use(passport.session());
 loadPassport();
 
 app.use("/public", express.static("src/public"));
+
+// TODO: Divide rate limit on specific routes
+const limiter = rateLimit({
+  windowMs: 60 * 1000, 
+  max: 70, 
+  message: "Too many requests, please try again later.",
+  handler: (req, res) => {
+    res.status(429).render("message.html", {
+      title: "Too Many Requests",
+      errormsg: "You have exceeded the number of requests allowed. Please try again later."
+    });
+  }
+});
+
+app.use(limiter);
 
 app.get("/", function (req: Request, res: Response) {
   res.send("Hello world!");
