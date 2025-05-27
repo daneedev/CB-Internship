@@ -106,7 +106,7 @@ router.get(
       ratings.reduce((acc, rating) => acc + rating.staff, 0) / ratings.length ||
       0;
     res.render("dashboard/dashboard.html", {
-      title: "Dashboard",
+      title: business.name,
       user: req.user,
       success: req.flash("success"),
       error: req.flash("error"),
@@ -114,7 +114,7 @@ router.get(
       surveysMonth: ratingsThisMonth,
       surveys: ratings,
       todaySurveys: ratingsToday,
-      // ratingsDifference: ,
+      surveyDifference: ratingsToday - ratingsYesterday,
       page: business.name,
       averageSatisfaction: averageSatisfaction,
     });
