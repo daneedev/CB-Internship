@@ -188,10 +188,11 @@ section p {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.satisfactionGraph img {
-  width: 60px;
-  height: 60px;
+.satisfactionGraph h2 {
+  color: #fff;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .satisfactionPercentage {
