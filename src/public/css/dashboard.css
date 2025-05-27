@@ -445,3 +445,22 @@ section:has(canvas) {
 section:has(table) {
   grid-column: 1 / -1;
 }
+
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.alert p {
+  margin: 0;
+}
+.alert-green {
+  background-color: #90e39a;
+  color: #2e7d32;
+}
+.alert-red {
+  background-color: #ffb3b3;
+  color: #c62828;
+}

@@ -31,6 +31,18 @@
     </aside>
     <main>
       <h2>Pages /<span class="currentSite"> {{ title }}</span></h2>
+      {% if error.length > 0 %}
+          <div class="alert alert-red">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p>{{ error }}</p>
+          </div>
+      {% endif %}
+      {% if success.length > 0 %}
+          <div class="alert alert-green">
+              <i class="fa-solid fa-circle-check"></i>
+              <p>{{ success }}</p>
+          </div>
+      {% endif %}
       {% block main %}{% endblock %}
     </main>
   </body>
