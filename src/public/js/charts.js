@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       },
     },
   });
-});
+
 
 function surveysInMonth(month) {
   return businessData.ratings.filter((survey) => {
@@ -143,3 +143,7 @@ new Chart(document.getElementById("overviewChart"), {
     ],
   },
 });
+
+
+});
+
