@@ -5,6 +5,7 @@ class Business extends Model {
     public id!: number;
     public name!: string;
     public ownerId!: number;
+    public description!: string;
     public createdAt!: Date;
     public updatedAt!: Date;
 }
@@ -17,6 +18,10 @@ Business.init(
             primaryKey: true,
         },
         name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
             type: DataTypes.STRING,
             allowNull: false,
         },

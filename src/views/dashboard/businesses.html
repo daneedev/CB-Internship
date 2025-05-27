@@ -38,6 +38,7 @@
             class="form-textarea"
             placeholder="Brief description of your business"
             name="description"
+            required
           ></textarea>
         </div>
 
@@ -82,20 +83,17 @@
         <h3 class="business-name">{{ business.name }}</h3>
         <div class="business-type">N/A</div>
         <p class="business-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-          est impedit fugiat at deserunt ducimus, quis aut repellendus et natus
-          nihil ex doloremque laborum vel beatae voluptatem culpa placeat
-          soluta.
+          {{ business.description  }}
         </p>
 
         <div class="stats-row">
           <div class="stat-item">
-            <div class="stat-number">N/A</div>
+            <div class="stat-number">{{ business.surveys }}</div>
             <div class="stat-label">Surveys</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Responses</div>
+            <div class="stat-number">{{ business.visits }}</div>
+            <div class="stat-label">Visits</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">N/A %</div>

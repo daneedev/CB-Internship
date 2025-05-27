@@ -15,15 +15,21 @@ router.get("/", checkAuth, async function (req: Request, res: Response) {
     where: { ownerId: (req.user as User).id },
   });
 
-  // Add initials for each business
-  const business = businesses.map((b) => {
-    const words = b.name.split(" ");
-    const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
-    return {
-      ...b.toJSON(),
-      initials: initials.substring(0, 2), // Limit to first 2 letters if needed
-    };
-  });
+  const business = await Promise.all(
+    businesses.map(async (b) => {
+      const words = b.name.split(" ");
+      const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
+      const surveys = await Rating.count({ where: { businessId: b.id } });
+      const visits = await Visit.count({ where: { businessId: b.id } });
+
+      return {
+        ...b.toJSON(),
+        initials: initials.substring(0, 2), // Limit to first 2 letters if needed
+        surveys: surveys,
+        visits: visits,
+      };
+    })
+  );
 
   res.render("dashboard/businesses.html", {
     title: "Businesses",
