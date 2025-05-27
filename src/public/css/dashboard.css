@@ -154,6 +154,7 @@ section p {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
 }
+
 .satisfaction {
   padding-bottom: 3rem;
 }
@@ -164,15 +165,28 @@ section p {
   justify-content: space-between;
   margin: 20px 0;
   flex-direction: column;
+  width: 67%;
+  position: relative;
+  height: 200px;
 }
 
 .satisfactionGraph canvas {
   width: 120px;
   height: 120px;
+  position: absolute;
+  top: 0;
 }
 
 .satisfactionGraph div {
+  position: absolute;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .satisfactionGraph img {
@@ -228,10 +242,8 @@ section p {
   background: none;
   display: flex;
   align-items: center;
-}
-.staffSatisfaction > section > section {
-  border: none;
-  background: none;
+  justify-content: space-between;
+  gap: 20px;
 }
 .secondRow {
   display: grid;
