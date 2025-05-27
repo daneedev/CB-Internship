@@ -104,19 +104,23 @@ router.get(
     );
     const averageStaff = Number(calcPercent(ratings.reduce((acc, rating) => Number(acc) + Number(rating.staff), 0) / ratings.length || 0, 4)) / 10 
 
+    const surveyLink = `/survey/${business.id}`;
+    const surveyText = `${process.env.DOMAIN}/survey/${business.id}`.substring(0, 20) + "...";
     res.render("dashboard/dashboard.html", {
-      title: business.name,
-      user: req.user,
-      success: req.flash("success"),
-      error: req.flash("error"),
-      totalSurveys: totalRatings,
-      surveysMonth: ratingsThisMonth,
-      surveys: ratings,
-      todaySurveys: ratingsToday,
-      surveyDifference: ratingsToday - ratingsYesterday,
-      page: business.name,
-      averageSatisfaction: averageSatisfaction,
-      averageStaff: averageStaff,
+        title: business.name,
+        user: req.user,
+        success: req.flash("success"),
+        error: req.flash("error"),
+        totalSurveys: totalRatings,
+        surveysMonth: ratingsThisMonth,
+        surveys: ratings,
+        todaySurveys: ratingsToday,
+        surveyDifference: ratingsToday - ratingsYesterday,
+        page: business.name,
+        averageSatisfaction: averageSatisfaction,
+        averageStaff: averageStaff,
+        surveyLink: surveyLink,
+        surveyText: surveyText,
     });
   }
 );

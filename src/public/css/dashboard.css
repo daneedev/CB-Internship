@@ -106,7 +106,7 @@ section p {
 
 .todayUsers h3,
 .clients h3,
-.sales h3 {
+.sales h3, .clients a {
   font-size: 16px;
   font-weight: 700;
   color: white;
