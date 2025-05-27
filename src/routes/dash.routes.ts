@@ -5,6 +5,8 @@ import { checkAuth } from "../handlers/checkAuth";
 import Business from "../models/Business";
 import Rating from "../models/Rating";
 import User from "../models/User";
+import addZero from "../handlers/addZero";
+import sha256 from 'crypto-js/sha256';
 
 const router = express.Router();
 
@@ -32,12 +34,38 @@ router.get("/", checkAuth, async function (req: Request, res: Response) {
   });
 });
 router.get("/profile", checkAuth, async function (req: Request, res: Response) {
-  res.render("dashboard/profile.html", {
-    title: "Profile",
-    user: req.user,
-    success: req.flash("success"),
-    error: req.flash("error"),
-  });
+    const businessCount = await Business.count({
+    where: { ownerId: (req.user as User).id },
+    });
+    const surveysCount = await Rating.count({
+        where: {
+            businessId: {
+                [Op.in]: (
+                    await Business.findAll({
+                        where: { ownerId: (req.user as User).id },
+                        attributes: ["id"],
+                    })
+                ).map((b) => b.id),
+            },
+        }
+    })
+    const user = req.user as User; 
+    const gravatarHash = sha256(user.email)
+    const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}`;
+    res.render("dashboard/profile.html", {
+        title: "Profile",
+        user: req.user,
+        success: req.flash("success"),
+        error: req.flash("error"),
+        businessCount: businessCount,
+        surveysCount: surveysCount,
+        gravatarUrl: gravatarUrl,
+        accountCreated: new Date(user.createdAt).toLocaleDateString("en-US", {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
+    });
 });
 router.get(
   "/:businessId",
@@ -106,6 +134,18 @@ router.get(
 
     const surveyLink = `/survey/${business.id}`;
     const surveyText = `${process.env.DOMAIN}/survey/${business.id}`.substring(0, 20) + "...";
+    ratings.map((rating) => {
+        let date = new Date(rating.createdAt).toLocaleDateString("en-US", {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        rating.setDataValue("date", date);
+    });
+
+    ratings.sort((a, b) => {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
     res.render("dashboard/dashboard.html", {
         title: business.name,
         user: req.user,
