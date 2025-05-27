@@ -38,9 +38,14 @@
       <h3>Satisfaction Rate</h3>
       <h4>From all surveys</h4>
       <section class="satisfactionGraph">
-        <canvas id="myChart"></canvas>
-        <div><img src="{{ emoticon }}" alt="emoticon" /></div>
-      </section>
+        <canvas id="satisfactionChart"></canvas>
+        {% if averageSatisfaction >= 66 %}
+          <i class="fa-solid fa-face-smile"></i>
+        {% elif averageSatisfaction > 33 %}
+          <i class="fa-solid fa-face-meh"></i>
+        {% else %}
+          <i class="fa-solid fa-face-frown"></i>                            
+        {% endif %}
       <section class="satisfactionPercentage">
         <p class="percentige lower">0%</p>
         <p class="percentige higher">100%</p>
@@ -48,6 +53,7 @@
           <h3>{{ averageSatisfaction }} %</h3>
           <p>Based on {{ totalSurveys }} surveys</p>
         </div>
+      </section>
       </section>
     </section>
     <section class="staffSatisfaction">

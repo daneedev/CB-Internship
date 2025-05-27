@@ -32,8 +32,8 @@ router.get("/getBusinessData/:id", checkAuth, async function (req: Request, res:
         ratings: ratings.map(rating => ({
             id: rating.id,
             usage: rating.usage,
-            satisfaction: rating.satisfaction,
-            staff: rating.staff,
+            satisfaction: Number(rating.satisfaction),
+            staff: Number(rating.staff),
             futureFeatures: rating.futureFeatures,
             overallExperience: rating.overallExperience,
             createdAt: rating.createdAt,
