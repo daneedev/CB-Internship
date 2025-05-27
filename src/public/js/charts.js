@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         {
           data: [percentage, 100 - percentage],
           backgroundColor: [
-            "#10b981", // Green for the progress
+            "rgb(16, 185, 129)", // Green for the progress
             "rgba(255, 255, 255, 0.1)", // Light transparent for the remaining
           ],
           borderWidth: 0,
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           enabled: false,
         },
       },
-      rotation: -180, // Start from the top
+      rotation: -180,
       circumference: 270, // 3/4 circle (270 degrees)
       animation: {
         animateRotate: true,
