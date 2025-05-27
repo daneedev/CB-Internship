@@ -170,12 +170,7 @@ section p {
   height: 200px;
 }
 
-.satisfactionGraph canvas {
-  width: 120px;
-  height: 120px;
-  position: absolute;
-  top: 0;
-}
+
 
 .satisfactionGraph div {
   position: absolute;
@@ -194,17 +189,6 @@ section p {
   font-size: 24px;
   font-weight: 700;
 }
-.satGraph {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px 0;
-  flex-direction: column;
-  width: 67%;
-  position: relative;
-  height: 100px;
-  width: 100px;
-}
 #satGraph {
   display: flex;
   flex-direction: column;
@@ -215,24 +199,10 @@ section p {
   background: none;
 }
 #satGraph i {
-  font-size: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #7b2cbf;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 25px;
+  color: #a259ff;
 }
 
-#satGraph canvas {
-  position: absolute;
-  top: -25px;
-}
 .satisfactionPercentage {
   display: flex;
   flex-direction: column;
@@ -252,21 +222,7 @@ section p {
   font-size: 14px;
   color: #94a3b8;
 }
-.lower {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-}
-.higher {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-}
 .percentige.current {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
   font-size: 24px;
   font-weight: 700;
   color: white;

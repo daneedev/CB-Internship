@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
     options: {
       cutout: "80%",
+      responsive: true,
       plugins: {
         tooltip: { enabled: false },
         legend: { display: false },
