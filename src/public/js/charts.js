@@ -53,7 +53,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             "rgba(255, 255, 255, 0.1)", // Light transparent for the remaining
           ],
           borderWidth: 0,
-          cutout: "75%", // Makes it a thick ring
+          cutout: "75%",
+          borderRadius: [10, {
+                innerEnd: 10,
+                outerEnd: 10
+            }]
         },
       ],
     },
