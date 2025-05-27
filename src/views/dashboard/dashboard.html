@@ -116,11 +116,11 @@
           </td>
           <td>
             <div class="completion">
-              <div class="percentage">{{ survey.overallExpierence }}</div>
+              <div class="percentage">{{ survey.overallExperience }} / 5</div>
               <div class="progress-container">
                 <div
                   class="progress-bar"
-                  data-completion="{{ survey.overallExpierence  }}"
+                  data-completion="{{ survey.overallExperience  }}"
                 ></div>
               </div>
             </div>
@@ -129,15 +129,6 @@
         {% endfor %}
       </tbody>
     </table>
-    <script>
-      // Set progress bar widths after the page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        const progressBars = document.querySelectorAll(".progress-bar");
-        progressBars.forEach((bar) => {
-          const completion = bar.getAttribute("data-completion");
-          bar.style.width = completion;
-        });
-      });
-    </script>
+    <script src="/public/js/charts.js"></script>
   </section>
 {% endblock %}
