@@ -194,10 +194,32 @@ section p {
   font-size: 24px;
   font-weight: 700;
 }
-.satisfactionGraph i {
+.satGraph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  flex-direction: column;
+  width: 67%;
+  position: relative;
+  height: 100px;
+  width: 100px;
+}
+#satGraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75%;
+  position: relative;
+  border: none;
+  background: none;
+}
+#satGraph i {
   font-size: 40px;
   position: absolute;
-  top: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #7b2cbf;
   width: 60px;
   height: 60px;
@@ -207,6 +229,10 @@ section p {
   justify-content: center;
 }
 
+#satGraph canvas {
+  position: absolute;
+  top: -25px;
+}
 .satisfactionPercentage {
   display: flex;
   flex-direction: column;
@@ -214,8 +240,12 @@ section p {
   justify-content: flex-end;
   padding-bottom: 20px;
   position: relative;
-  height: 27%;
-  width: 100%;
+  height: 69px;
+  width: 140%;
+  margin-top: 10px;
+  top: -4%;
+  left: 69%;
+  transform: translate(-50%, -50%);
 }
 
 .percentige {
