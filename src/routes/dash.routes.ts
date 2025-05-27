@@ -5,8 +5,8 @@ import { checkAuth } from "../handlers/checkAuth";
 import Business from "../models/Business";
 import Rating from "../models/Rating";
 import User from "../models/User";
-import addZero from "../handlers/addZero";
 import sha256 from 'crypto-js/sha256';
+import Visit from "../models/Visit";
 
 const router = express.Router();
 
@@ -146,6 +146,27 @@ router.get(
     ratings.sort((a, b) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
+
+    const visitsToday = await Visit.count({
+        where: {
+            businessId: business.id,
+            createdAt: {
+                [Op.gte]: new Date(new Date().setHours(0)),
+            },
+        },
+    })
+
+    const visitsYesterday = await Visit.count({
+        where: {
+            businessId: business.id,
+            createdAt: {
+                [Op.gte]: new Date(new Date().setHours(0) - 24 * 60 * 60 * 1000),
+                [Op.lt]: new Date(new Date().setHours(0)),
+            },
+        },
+    });
+    
+
     res.render("dashboard/dashboard.html", {
         title: business.name,
         user: req.user,
@@ -161,6 +182,8 @@ router.get(
         averageStaff: averageStaff,
         surveyLink: surveyLink,
         surveyText: surveyText,
+        visitsToday: visitsToday,
+        visitsDifference: visitsToday - visitsYesterday,
     });
   }
 );

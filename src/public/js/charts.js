@@ -101,6 +101,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         return survey.month === month;
     }).length;
     }
+    function visitsInMonth(month) {
+    return businessData.visits.filter((visit) => {
+        return visit.month === month;
+    }).length;
+    }
 
     new Chart(document.getElementById("overviewChart"), {
     type: "line",
@@ -141,6 +146,27 @@ document.addEventListener("DOMContentLoaded", async function () {
             fill: true,
             backgroundColor: "rgba(162, 89, 255, 0.2)",
         },
+        {
+            label: "Visits",
+            data: [
+            visitsInMonth(0),
+            visitsInMonth(1),
+            visitsInMonth(2),
+            visitsInMonth(3),
+            visitsInMonth(4),
+            visitsInMonth(5),
+            visitsInMonth(6),
+            visitsInMonth(7),
+            visitsInMonth(8),
+            visitsInMonth(9),
+            visitsInMonth(10),
+            visitsInMonth(11),
+            ],
+            borderColor: "#7b2cbf",
+            tension: 0.5,
+            fill: true,
+            backgroundColor: "rgba(44, 47, 74, 0.2)",
+        }
         ],
     },
     });

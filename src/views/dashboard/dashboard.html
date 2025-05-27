@@ -20,10 +20,14 @@
     </div>
   </section>
   <section class="total-sales">
-    <h4>Total sales</h4>
+    <h4>Today's visits</h4>
     <div class="sales">
-      <h3>{{ totalSales }}</h3>
-      <p>{{ percentage }}</p>
+      <h3>{{ visitsToday }}</h3>
+      {% if visitsDifference > 0 %}
+      <p class="positive difference">+{{ visitsDifference }}</p>
+      {% elif visitsDifference < 0 %}
+      <p class="negative difference">{{ visitsDifference }}</p>
+      {% endif %}
     </div>
   </section>
 </section>
