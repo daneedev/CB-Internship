@@ -6,9 +6,9 @@
       <div class="todayUsers">
         <h3>{{ todaySurveys }}</h3>
         {% if surveyDifference > 0 %}
-        <p class="positive difference">+ {{ surveyDifference }}</p>
-        {% else %}
-        <p class="negative difference">- {{ surveyDifference }}</p>
+        <p class="positive difference">+{{ surveyDifference }}</p>
+        {% elif surveyDifference < 0 %}
+        <p class="negative difference">{{ surveyDifference }}</p>
         {% endif %}
       </div>
     </section>
