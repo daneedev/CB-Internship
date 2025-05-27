@@ -246,6 +246,10 @@ section p {
   justify-content: space-between;
   gap: 20px;
 }
+.staffSatisfactionGrated {
+  display: flex;
+  flex-direction: column;
+}
 .secondRow {
   display: grid;
   grid-template-columns: 2fr 1fr;
