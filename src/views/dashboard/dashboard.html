@@ -77,7 +77,6 @@
   </section>
 </section>
 
-<section class="secondRow row">
   <section class="secondRow row">
     <section>
       <h3>Survey overview</h3>
@@ -85,20 +84,20 @@
       <canvas id="overviewChart"></canvas>
     </section>
     <section>
-      <canvas id="myChart4"></canvas>
       <h3>Activity of <br />Users</h3>
       <p><span>({{ surveysMore }} {{moreLess}})</span> than last week</p>
+      <canvas id="usageChart" style="width: 100%; height: 100%; display: block;"></canvas>
     </section>
   </section>
 
 
 <section>
   <h3>Surveys</h3>
-  <p>{{ surveysDone }} done this month</p>
+  <p>{{ surveysMonth }} done this month</p>
   <table>
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Date</th>
         <th>Usage</th>
         <th>Satisfaction</th>
         <th>Staff satisfaction</th>
@@ -110,7 +109,7 @@
       <tr>
         <td>
           <div class="surveyor">
-            <div class="survey-name">{{ survey.id }}</div>
+            <div class="survey-name">{{ survey.dataValues.date }}</div>
           </div>
         </td>
         <td>

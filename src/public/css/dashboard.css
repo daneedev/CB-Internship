@@ -296,7 +296,16 @@ section p {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
+  width: 100%;
 }
+
+.secondRow section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
 /* Table Styles */
 table {
   width: 100%;
