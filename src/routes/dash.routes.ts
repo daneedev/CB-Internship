@@ -102,9 +102,13 @@ router.get(
       ) / ratings.length || 0,
       3
     );
-    const averageStaff =
-      ratings.reduce((acc, rating) => acc + rating.staff, 0) / ratings.length ||
-      0;
+    const averageStaff = calcPercent(
+      ratings.reduce(
+        (acc, rating) => Number(acc) + Number(rating.staff),
+        0
+      ) / ratings.length || 0,
+      4
+    );
     res.render("dashboard/dashboard.html", {
       title: business.name,
       user: req.user,
@@ -117,6 +121,7 @@ router.get(
       surveyDifference: ratingsToday - ratingsYesterday,
       page: business.name,
       averageSatisfaction: averageSatisfaction,
+      averageStaff: averageStaff,
     });
   }
 );
