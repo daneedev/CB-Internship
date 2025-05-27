@@ -1,0 +1,254 @@
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.profile-card {
+  background: rgba(15, 35, 80, 0.4);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar-section {
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar-edit {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.avatar-edit:hover {
+  background: #9f7aea;
+}
+
+.avatar-edit::before {
+  content: "✏️";
+  font-size: 14px;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.profile-role {
+  color: #8b5cf6;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+.info-value-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.info-label {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+}
+
+.edit-btn {
+  background: none;
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  color: #8b5cf6;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8b5cf6;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-primary {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #9f7aea;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Logo color classes */
+.tech-logo {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+.retail-logo {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+.health-logo {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+.finance-logo {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    margin-left: 0;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .businesses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .profile-stats {
+    gap: 16px;
+  }
+}
