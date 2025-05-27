@@ -1,1 +1,98 @@
 {%extends "dashboard/template.html" %} {%block main %}
+<div class="profile-grid">
+    <!-- Profile Avatar Section -->
+    <div class="profile-card profile-avatar-section">
+        <div class="avatar-container">
+            <div class="profile-avatar">JD</div>
+            <div class="avatar-edit"></div>
+        </div>
+        <h2 class="profile-name">John Doe</h2>
+        
+        <div class="profile-stats">
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Businesses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">127</div>
+                <div class="stat-label">Surveys</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Information -->
+    <div class="profile-card profile-info">
+        <div class="info-section">
+            <h3 class="section-title">Account Information</h3>
+            <div class="info-row">
+                <span class="info-label">Username</span>
+                <div class="info-value-container">
+                    <span class="info-value">John Doe</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <div class="info-value-container">
+                    <span class="info-value">john.doe@company.com</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Password</span>
+                <div class="info-value-container">
+                    <span class="info-value">************</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Account Created</span>
+                <span class="info-value">January 15, 2024</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="action-buttons">
+    <button class="btn-primary">Delete Profile</button>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Edit button functionality
+        const editButtons = document.querySelectorAll('.edit-btn');
+        editButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('.info-row');
+                const label = row.querySelector('.info-label').textContent;
+                alert(`Edit ${label} functionality would be implemented here`);
+            });
+        });
+
+        // Avatar edit functionality
+        const avatarEdit = document.querySelector('.avatar-edit');
+        avatarEdit.addEventListener('click', function() {
+            alert('Avatar upload functionality would be implemented here');
+        });
+
+        // Action button functionality
+        const actionButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+        actionButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert(`${this.textContent} functionality would be implemented here`);
+            });
+        });
+
+        // Business item click functionality
+        const businessItems = document.querySelectorAll('.business-item');
+        businessItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const businessName = this.querySelector('h4').textContent;
+                alert(`Navigate to ${businessName} dashboard`);
+            });
+        });
+    });
+</script>
+{% endblock %}
