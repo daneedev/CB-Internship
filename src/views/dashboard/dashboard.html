@@ -1,145 +1,143 @@
 {%extends "dashboard/template.html" %} {%block main %}
-<main>
-  <h2>Pages / {{ page }}</h2>
-  <section class="users">
-    <section class="user-info">
-      <h4>Today's surveys</h4>
-      <div class="todayUsers">
-        <h3>{{ todaySurveys }}</h3>
-        {% if surveyDifference > 0 %}
-        <p class="positive difference">+ {{ surveyDifference }}</p>
-        {% else %}
-        <p class="negative difference">- {{ surveyDifference }}</p>
-        {% endif %}
-      </div>
-    </section>
-    <section class="new-clients">
-      <h4>New clients</h4>
-      <div class="clients">
-        <h3>{{ newClients }}</h3>
-        <p>{{ percentage }}</p>
-      </div>
-    </section>
-    <section class="total-sales">
-      <h4>Total sales</h4>
-      <div class="sales">
-        <h3>{{ totalSales }}</h3>
-        <p>{{ percentage }}</p>
-      </div>
-    </section>
-  </section>
 
-  <section class="firstRow row">
-    <section class="content">
-      <p>Welcome back!</p>
-      <h1>{{ user.username }}</h1>
-      <p>Glad to see you again</p>
-    </section>
-    <section class="satisfaction">
-      <h3>Satisfaction Rate</h3>
-      <h4>From all surveys</h4>
-      <section class="satisfactionGraph">
-        <canvas id="myChart"></canvas>
-        <div><img src="{{ emoticon }}" alt="emoticon" /></div>
-      </section>
-      <section class="satisfactionPercentage">
-        <p class="percentige lower">0%</p>
-        <p class="percentige higher">100%</p>
+<section class="users">
+  <section class="user-info">
+    <h4>Today's surveys</h4>
+    <div class="todayUsers">
+      <h3>{{ todaySurveys }}</h3>
+      {% if surveyDifference > 0 %}
+      <p class="positive difference">+{{ surveyDifference }}</p>
+      {% elif surveyDifference < 0 %}
+      <p class="negative difference">{{ surveyDifference }}</p>
+      {% endif %}
+    </div>
+  </section>
+  <section class="new-clients">
+    <h4>Survey link</h4>
+    <div class="clients">
+      <h3><i class="fa-solid fa-link"></i>&nbsp;<a href="{{ surveyLink }}">{{ surveyText }}</a></h3>
+      <p>{{ percentage }}</p>
+    </div>
+  </section>
+  <section class="total-sales">
+    <h4>Today's visits</h4>
+    <div class="sales">
+      <h3>{{ visitsToday }}</h3>
+      {% if visitsDifference > 0 %}
+      <p class="positive difference">+{{ visitsDifference }}</p>
+      {% elif visitsDifference < 0 %}
+      <p class="negative difference">{{ visitsDifference }}</p>
+      {% endif %}
+    </div>
+  </section>
+</section>
+
+<section class="firstRow row">
+  <section class="content">
+    <p>Welcome back!</p>
+    <h1>{{ user.username }}</h1>
+    <p>Glad to see you again</p>
+  </section>
+  <section class="satisfaction">
+    <h3>Satisfaction Rate</h3>
+    <h4>From all surveys</h4>
+    <section id="satGraph">
+        <canvas id="satisfactionChart" style="width: 100px; height: 100%; display: block;"></canvas>
         <div class="percentige current">
-          <h3>{{ averageSatisfaction }} %</h3>
+          <h3>
+            {% if averageSatisfaction >= 66 %}
+            <i class="fa-solid fa-face-smile"></i>
+            {% elif averageSatisfaction > 33 %}
+            <i class="fa-solid fa-face-meh"></i>
+            {% else %}
+            <i class="fa-solid fa-face-frown"></i>
+            {% endif %}
+            {{ averageSatisfaction }} %</h3>
           <p>Based on {{ totalSurveys }} surveys</p>
         </div>
-      </section>
-    </section>
-    <section class="staffSatisfaction">
-      <h3>Staff satisfaction</h3>
-      <section>
-        <section>
-          <p>Graded</p>
-          <h4>{{ totalSurveys }} people</h4>
-        </section>
-        <div class="satisfactionGraph">
-          <canvas id="myChart2"></canvas>
-          <div>
-            <p>Satisfaction</p>
-            <h2>{{ stafSatisfactionRate }}</h2>
-            <p>Total Score</p>
-          </div>
-        </div>
-      </section>
     </section>
   </section>
+  <section class="staffSatisfaction">
+    <h3>Staff satisfaction</h3>
+    <section>
+      <section>
+        <p>Graded</p>
+        <h4>{{ totalSurveys }} people</h4>
+      </section>
+      <div class="satisfactionGraph">
+        <canvas id="myChart2"></canvas>
+        <div>
+          <p>Satisfaction</p>
+          <h2>{{ averageStaff }} / 10</h2>
+          <p>Total Score</p>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
 
   <section class="secondRow row">
     <section>
       <h3>Survey overview</h3>
       <p><span>({{ surveysMore }} {{moreLess}})</span> in {{ currentYear }}</p>
-      <canvas id="myChart3"></canvas>
+      <canvas id="overviewChart"></canvas>
     </section>
     <section>
-      <canvas id="myChart4"></canvas>
       <h3>Activity of <br />Users</h3>
       <p><span>({{ surveysMore }} {{moreLess}})</span> than last week</p>
+      <canvas id="usageChart" style="width: 100%; height: 100%; display: block;"></canvas>
     </section>
   </section>
 
-  <section>
-    <h3>Surveys</h3>
-    <p>{{ surveysDone }} done this month</p>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Usage</th>
-          <th>Satisfaction</th>
-          <th>Staff satisfaction</th>
-          <th>Overall</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for survey in surveys %}
-        <tr>
-          <td>
-            <div class="surveyor">
-              <div class="survey-name">{{ survey.id }}</div>
+
+<section>
+  <h3>Surveys</h3>
+  <p>{{ surveysMonth }} done this month</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Usage</th>
+        <th>Satisfaction</th>
+        <th>Staff satisfaction</th>
+        <th>Overall</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for survey in surveys %}
+      <tr>
+        <td>
+          <div class="surveyor">
+            <div class="survey-name">{{ survey.dataValues.date }}</div>
+          </div>
+        </td>
+        <td>
+          <div class="usage">
+            <div class="usage">{{ survey.usage }}</div>
+          </div>
+        </td>
+        <td>
+          <div class="tableSatisfaction">{{ survey.satisfaction }} / 3</div>
+        </td>
+        <td>
+          <div class="experience">{{ survey.staff }} / 4</div>
+        </td>
+        <td>
+          <div class="completion">
+            <div class="percentage">{{ survey.overallExperience }} / 5</div>
+            <div class="progress-container">
+              <div
+                class="progress-bar"
+                data-completion="{{ survey.overallExperience  }}"
+              ></div>
             </div>
-          </td>
-          <td>
-            <div class="usage">
-              <div class="usage">{{ survey.usage }}</div>
-            </div>
-          </td>
-          <td>
-            <div class="tableSatisfaction">{{ survey.satisfaction }} / 3</div>
-          </td>
-          <td>
-            <div class="experience">{{ survey.staff }} / 4</div>
-          </td>
-          <td>
-            <div class="completion">
-              <div class="percentage">{{ survey.overallExpierence }}</div>
-              <div class="progress-container">
-                <div
-                  class="progress-bar"
-                  data-completion="{{ survey.overallExpierence  }}"
-                ></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <script>
-      // Set progress bar widths after the page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        const progressBars = document.querySelectorAll(".progress-bar");
-        progressBars.forEach((bar) => {
-          const completion = bar.getAttribute("data-completion");
-          bar.style.width = completion;
-        });
-      });
-    </script>
-  </section>
-</main>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script src="/public/js/charts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</section>
 {% endblock %}

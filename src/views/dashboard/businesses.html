@@ -1,6 +1,5 @@
 {%extends "dashboard/template.html" %} {%block main %}
-<main>
-  <h2>Pages / {{ page }}</h2>
+
   <div class="header">
     <div class="header-content">
       <h1>Select Your Business</h1>
@@ -39,6 +38,7 @@
             class="form-textarea"
             placeholder="Brief description of your business"
             name="description"
+            required
           ></textarea>
         </div>
 
@@ -83,20 +83,17 @@
         <h3 class="business-name">{{ business.name }}</h3>
         <div class="business-type">N/A</div>
         <p class="business-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-          est impedit fugiat at deserunt ducimus, quis aut repellendus et natus
-          nihil ex doloremque laborum vel beatae voluptatem culpa placeat
-          soluta.
+          {{ business.description  }}
         </p>
 
         <div class="stats-row">
           <div class="stat-item">
-            <div class="stat-number">N/A</div>
+            <div class="stat-number">{{ business.surveys }}</div>
             <div class="stat-label">Surveys</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Responses</div>
+            <div class="stat-number">{{ business.visits }}</div>
+            <div class="stat-label">Visits</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">N/A %</div>
@@ -123,68 +120,5 @@
       </div>
     </div>
   </div>
-</main>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const businessCards = document.querySelectorAll(".business-card");
-    const selectedBusinessName = document.getElementById(
-      "selectedBusinessName"
-    );
-    const continueBtn = document.getElementById("continueBtn");
-    const addBusinessBtn = document.getElementById("addBusinessBtn");
-    const addBusinessModal = document.getElementById("addBusinessModal");
-    const closeAddBusinessModal = document.getElementById(
-      "closeAddBusinessModal"
-    );
-    const cancelAddBusiness = document.getElementById("cancelAddBusiness");
-    const logoOptions = document.querySelectorAll(".logo-option");
-
-    let selectedBusiness = null;
-    let selectedLogoClass = "";
-
-    // Business selection functionality
-    businessCards.forEach((card) => {
-      card.addEventListener("click", function () {
-        businessCards.forEach((c) => c.classList.remove("selected"));
-        this.classList.add("selected");
-
-        selectedBusiness = this.dataset.id;
-        const businessName = this.querySelector(".business-name").textContent;
-        selectedBusinessName.textContent = businessName;
-        continueBtn.disabled = false;
-      });
-    });
-
-    continueBtn.addEventListener("click", function () {
-      if (selectedBusiness) {
-        console.log("Selected business:", selectedBusiness);
-        window.location.href = `/dash/${selectedBusiness}`;
-      }
-    });
-
-    // Modal functionality
-    addBusinessBtn.addEventListener("click", () => {
-      addBusinessModal.classList.add("active");
-    });
-
-    function closeModal() {
-      addBusinessModal.classList.remove("active");
-      addBusinessForm.reset();
-      logoOptions.forEach((option) => option.classList.remove("selected"));
-      selectedLogoClass = "";
-    }
-
-    closeAddBusinessModal.addEventListener("click", closeModal);
-    cancelAddBusiness.addEventListener("click", closeModal);
-
-    // Close modal when clicking outside
-    addBusinessModal.addEventListener("click", function (e) {
-      if (e.target === addBusinessModal) {
-        closeModal();
-      }
-    });
-
-  
-  });
-</script>
+<script src="/public/js/businesses.js"></script>
 {% endblock %}

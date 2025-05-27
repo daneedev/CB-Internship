@@ -52,6 +52,10 @@ section p {
   color: #94a3b8;
   margin-bottom: 8px;
 }
+.currentSite {
+  color: white;
+  font-weight: 700;
+}
 .users {
   display: flex;
   justify-content: space-between;
@@ -102,8 +106,8 @@ section p {
 
 .todayUsers h3,
 .clients h3,
-.sales h3 {
-  font-size: 12px;
+.sales h3, .clients a {
+  font-size: 16px;
   font-weight: 700;
   color: white;
 }
@@ -150,6 +154,7 @@ section p {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
 }
+
 .satisfaction {
   padding-bottom: 3rem;
 }
@@ -160,20 +165,42 @@ section p {
   justify-content: space-between;
   margin: 20px 0;
   flex-direction: column;
+  width: 67%;
+  position: relative;
+  height: 200px;
 }
 
-.satisfactionGraph canvas {
-  width: 120px;
-  height: 120px;
-}
+
 
 .satisfactionGraph div {
+  position: absolute;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
-.satisfactionGraph img {
-  width: 60px;
-  height: 60px;
+.satisfactionGraph h2 {
+  color: #fff;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+#satGraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75%;
+  position: relative;
+  border: none;
+  background: none;
+}
+#satGraph i {
+  font-size: 25px;
+  color: #a259ff;
 }
 
 .satisfactionPercentage {
@@ -183,29 +210,19 @@ section p {
   justify-content: flex-end;
   padding-bottom: 20px;
   position: relative;
-  height: 27%;
-  width: 100%;
+  height: 69px;
+  width: 140%;
+  margin-top: 10px;
+  top: -4%;
+  left: 69%;
+  transform: translate(-50%, -50%);
 }
 
 .percentige {
   font-size: 14px;
   color: #94a3b8;
 }
-.lower {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-}
-.higher {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-}
 .percentige.current {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
   font-size: 24px;
   font-weight: 700;
   color: white;
@@ -224,16 +241,27 @@ section p {
   background: none;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
-.staffSatisfaction > section > section {
-  border: none;
-  background: none;
+.staffSatisfactionGrated {
+  display: flex;
+  flex-direction: column;
 }
 .secondRow {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
+  width: 100%;
 }
+
+.secondRow section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
 /* Table Styles */
 table {
   width: 100%;
@@ -416,4 +444,23 @@ section:has(canvas) {
 /* Survey section full width */
 section:has(table) {
   grid-column: 1 / -1;
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.alert p {
+  margin: 0;
+}
+.alert-green {
+  background-color: #90e39a;
+  color: #2e7d32;
+}
+.alert-red {
+  background-color: #ffb3b3;
+  color: #c62828;
 }

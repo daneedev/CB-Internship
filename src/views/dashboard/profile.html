@@ -1,0 +1,63 @@
+{%extends "dashboard/template.html" %} {%block main %}
+<div class="profile-grid">
+    <!-- Profile Avatar Section -->
+    <div class="profile-card profile-avatar-section">
+        <div class="avatar-container">
+            <img src={{ gravatarUrl }} class="profile-avatar"></img>
+            <a href="https://gravatar.com/" target="_blank" class="avatar-edit"></a>
+        </div>
+        <h2 class="profile-name">{{ user.username }}</h2>
+        
+        <div class="profile-stats">
+            <div class="stat-item">
+                <div class="stat-number">{{ businessCount }}</div>
+                <div class="stat-label">Businesses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ surveysCount }}</div>
+                <div class="stat-label">Surveys</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Information -->
+    <div class="profile-card profile-info">
+        <div class="info-section">
+            <h3 class="section-title">Account Information</h3>
+            <div class="info-row">
+                <span class="info-label">Username</span>
+                <div class="info-value-container">
+                    <span class="info-value">{{ user.username }}</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <div class="info-value-container">
+                    <span class="info-value">{{ user.email }}</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Password</span>
+                <div class="info-value-container">
+                    <span class="info-value">************</span>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Account Created</span>
+                <span class="info-value">{{ accountCreated }}</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="action-buttons">
+    <button class="btn-primary">Delete Profile</button>
+</div>
+</div>
+<script src="/public/js/profile.js"></script>
+{% endblock %}

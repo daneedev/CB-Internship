@@ -5,11 +5,12 @@ import User from "../models/User";
 const router = express.Router();
 
 router.post("/create", async function (req: Request, res: Response) {
-  const { name } = req.body;
+  const { name, description } = req.body;
   const user = req.user as User;
   Business.create({
     name: name,
     ownerId: user.id,
+    description: description,
   });
   req.flash("success", "Business created successfully");
   res.redirect("/dash");

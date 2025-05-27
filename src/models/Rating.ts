@@ -51,5 +51,7 @@ Rating.init(
     }
 );
 
+Rating.sync()
+
 
 export default Rating;
