@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/public/css/aside.css" />
     <link rel="stylesheet" href="/public/css/bussinesses.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="/public/css/profile.css/>
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
@@ -27,6 +29,9 @@
         </ul>
       </nav>
     </aside>
-    {% block main %}{% endblock %}
+    <main>
+      <h2>Pages <span class="currentSite">/ {{ title }}</span></h2>
+      {% block main %}{% endblock %}
+    </main>
   </body>
 </html>
