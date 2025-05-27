@@ -31,5 +31,7 @@ Business.init(
     }
 );
 
+Business.sync()
+
 
 export default Business;

@@ -1,14 +1,14 @@
 import { db } from "../handlers/db";
 import { DataTypes, Model } from "sequelize";
 
-class Rating extends Model {
+class Visit extends Model {
     public id!: number;
     public businessId!: string;
     public createdAt!: Date;
     public updatedAt!: Date;
 }
 
-Rating.init(
+Visit.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -26,5 +26,6 @@ Rating.init(
     }
 );
 
+Visit.sync()
 
-export default Rating;
+export default Visit;
