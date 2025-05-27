@@ -102,13 +102,8 @@ router.get(
       ) / ratings.length || 0,
       3
     );
-    const averageStaff = calcPercent(
-      ratings.reduce(
-        (acc, rating) => Number(acc) + Number(rating.staff),
-        0
-      ) / ratings.length || 0,
-      4
-    );
+    const averageStaff = Number(calcPercent(ratings.reduce((acc, rating) => Number(acc) + Number(rating.staff), 0) / ratings.length || 0, 4)) / 10 
+
     res.render("dashboard/dashboard.html", {
       title: business.name,
       user: req.user,
