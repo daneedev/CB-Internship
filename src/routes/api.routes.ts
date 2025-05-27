@@ -21,6 +21,7 @@ router.get("/getBusinessData/:id", checkAuth, async function (req: Request, res:
     const ratings = await Rating.findAll({
         where: { businessId: business.id }
     });
+
     res.json({
         business: {
             id: business.id,
@@ -37,8 +38,10 @@ router.get("/getBusinessData/:id", checkAuth, async function (req: Request, res:
             futureFeatures: rating.futureFeatures,
             overallExperience: rating.overallExperience,
             createdAt: rating.createdAt,
-            updatedAt: rating.updatedAt
+            updatedAt: rating.updatedAt,
+            month: rating.createdAt.getMonth(),
         }))
+
     });
 })
 

@@ -81,4 +81,25 @@ document.addEventListener("DOMContentLoaded", async function () {
       },
     },
   });
+
+  function surveysInMonth(month) {
+    return businessData.ratings.filter(survey => {
+      return survey.month === month;
+    }).length;
+  }
+
+  new Chart(document.getElementById('overviewChart'), {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Surveys",
+                data: [surveysInMonth(0), surveysInMonth(1), surveysInMonth(2), surveysInMonth(3), surveysInMonth(4), surveysInMonth(5), surveysInMonth(6), surveysInMonth(7), surveysInMonth(8), surveysInMonth(9), surveysInMonth(10), surveysInMonth(11)],
+                borderColor: '#a259ff',
+                tension: 0.5,
+                fill: true,
+                backgroundColor: 'rgba(162, 89, 255, 0.2)',
+            }]
+        },
+  })
 });
