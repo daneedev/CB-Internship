@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         input.value = field === "password" ? "" : currentValue;
         input.setAttribute("data-field", field);
         input.name = field;
+        input.required = true;
 
         // Replace value with input
         valueContainer.innerHTML = "";
