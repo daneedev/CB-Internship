@@ -71,9 +71,10 @@ router.post("/update", checkAuth, async function (req: Request, res: Response) {
         }
         user.password = await bcrypt.hash(password, 10);
     }
-    await user.save();
+    await user.save().then(() => {;
     req.flash("success", "Profile updated successfully");
     res.redirect("/dash/profile");
+    })
 });
 
 router.use(checkNotAuth);

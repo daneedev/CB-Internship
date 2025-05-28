@@ -66,20 +66,34 @@ router.get("/profile", checkAuth, async function (req: Request, res: Response) {
         }
     })
     const user = req.user as User; 
+    const userDb = await User.findByPk(user.id)
+    if (!userDb) {
+        req.flash("error", "User not found");
+        return res.redirect("/dash");
+    }
     const gravatarHash = sha256(user.email)
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}`;
     res.render("dashboard/profile.html", {
         title: "Profile",
-        user: req.user,
+        user: userDb,
         success: req.flash("success"),
         error: req.flash("error"),
         businessCount: businessCount,
         surveysCount: surveysCount,
         gravatarUrl: gravatarUrl,
-        accountCreated: new Date(user.createdAt).toLocaleDateString("en-US", {
+        accountCreated: new Date(userDb.createdAt).toLocaleDateString("en-US", {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        }),
+        accountUpdated: new Date(userDb.updatedAt).toLocaleDateString("en-US", {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
         }),
     });
 });
@@ -154,7 +168,9 @@ router.get(
         let date = new Date(rating.createdAt).toLocaleDateString("en-US", {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
         })
         rating.setDataValue("date", date);
     });
