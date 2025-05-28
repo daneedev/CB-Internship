@@ -27,7 +27,7 @@ h2 {
 
 main {
   flex: 1;
-  padding: 24px;
+  padding: 0 24px 24px 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -197,8 +197,9 @@ section p {
   position: relative;
   border: none;
   background: none;
+  padding: 0 10px 20px 10px;
 }
-#satGraph i {
+#satGraph i, table i {
   font-size: 25px;
   color: #a259ff;
 }
@@ -359,12 +360,8 @@ td {
   color: white;
 }
 
-.completion {
-  width: 100%;
-}
-
 .progress-container {
-  width: 100%;
+  width: 60%;
   height: 4px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 2px;

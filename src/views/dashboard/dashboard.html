@@ -12,13 +12,6 @@
       {% endif %}
     </div>
   </section>
-  <section class="new-clients">
-    <h4>Survey link</h4>
-    <div class="clients">
-      <h3><i class="fa-solid fa-link"></i>&nbsp;<a href="{{ surveyLink }}">{{ surveyText }}</a></h3>
-      <p>{{ percentage }}</p>
-    </div>
-  </section>
   <section class="total-sales">
     <h4>Today's visits</h4>
     <div class="sales">
@@ -28,6 +21,13 @@
       {% elif visitsDifference < 0 %}
       <p class="negative difference">{{ visitsDifference }}</p>
       {% endif %}
+    </div>
+  </section>
+  <section class="new-clients">
+    <h4>Survey link</h4>
+    <div class="clients">
+      <h3><i class="fa-solid fa-link"></i>&nbsp;<a href="{{ surveyLink }}" target="_blank">{{ surveyText }}</a></h3>
+      <p>{{ percentage }}</p>
     </div>
   </section>
 </section>
@@ -117,19 +117,31 @@
           </div>
         </td>
         <td>
-          <div class="tableSatisfaction">{{ survey.satisfaction }} / 3</div>
+          <div class="tableSatisfaction">
+            {% if survey.satisfaction == 1 %}
+            <i class="fa-solid fa-face-frown" title="Unsatisfied"></i>
+            {% elif survey.satisfaction == 2 %}
+            <i class="fa-solid fa-face-meh" title="Neutral"></i>
+            {% else %}
+            <i class="fa-solid fa-face-smile" title="Happy"></i>
+            {% endif %}
+          </div>
         </td>
         <td>
           <div class="experience">{{ survey.staff }} / 4</div>
+                      <div class="progress-container">
+              <div
+                class="progress-bar"
+                data-completion="{{ survey.staff  }}"
+              ></div>
+            </div>
         </td>
         <td>
           <div class="completion">
-            <div class="percentage">{{ survey.overallExperience }} / 5</div>
-            <div class="progress-container">
-              <div
-                class="progress-bar"
-                data-completion="{{ survey.overallExperience  }}"
-              ></div>
+            <div class="percentage">
+              {% for i in range(survey.overallExperience) %}
+              <i class="fa-solid fa-star"></i>
+              {% endfor %}
             </div>
           </div>
         </td>

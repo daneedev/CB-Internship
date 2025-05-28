@@ -42,25 +42,6 @@
           ></textarea>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Choose Logo Style</label>
-          <div class="logo-selector">
-            <div class="logo-option tech-logo" data-class="tech-logo">TC</div>
-            <div class="logo-option retail-logo" data-class="retail-logo">
-              RT
-            </div>
-            <div class="logo-option health-logo" data-class="health-logo">
-              HC
-            </div>
-            <div class="logo-option finance-logo" data-class="finance-logo">
-              FN
-            </div>
-            <div class="logo-option food-logo" data-class="food-logo">FD</div>
-            <div class="logo-option education-logo" data-class="education-logo">
-              ED
-            </div>
-          </div>
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn-cancel" id="cancelAddBusiness">
             Cancel
@@ -96,8 +77,8 @@
             <div class="stat-label">Visits</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">N/A %</div>
-            <div class="stat-label">Satisfaction</div>
+            <div class="stat-number">{{ business.overallExperience }} %</div>
+            <div class="stat-label">Overall satisfaction</div>
           </div>
         </div>
       </div>
