@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const progressBars = document.querySelectorAll(".progress-bar");
   progressBars.forEach((bar) => {
     const completion = bar.getAttribute("data-completion");
-    bar.style.width = completion * 20 + "%";
+    bar.style.width = completion * 25 + "%";
   });
 
   const businessId = window.location.pathname.split("/").pop();
