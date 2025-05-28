@@ -21,12 +21,22 @@ router.get("/", checkAuth, async function (req: Request, res: Response) {
       const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
       const surveys = await Rating.count({ where: { businessId: b.id } });
       const visits = await Visit.count({ where: { businessId: b.id } });
-
+      const ratings = await Rating.findAll({
+        where: { businessId: b.id }
+      });
+      const overallExperience = calcPercent(
+      ratings.reduce(
+        (acc, rating) => Number(acc) + Number(rating.overallExperience),
+        0
+      ) / ratings.length || 0,
+      5
+    );
       return {
         ...b.toJSON(),
         initials: initials.substring(0, 2), // Limit to first 2 letters if needed
         surveys: surveys,
         visits: visits,
+        overallExperience: overallExperience,
       };
     })
   );
