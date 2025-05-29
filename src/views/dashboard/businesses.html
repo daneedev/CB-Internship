@@ -57,7 +57,15 @@
     <div class="business-card" data-id="{{ business.id }}">
       <div class="card-header">
         <div class="business-logo tech-logo">{{ business.initials }}</div>
-        <div class="selection-indicator"></div>
+        <div class="business-options">
+            <form action="/business/delete" method="post">
+              <input type="hidden" name="id" value="{{ business.id }}" />
+              <button type="submit" class="delete-btn">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+          </form>
+          <div class="selection-indicator"></div>
+        </div>
       </div>
 
       <div class="card-content">

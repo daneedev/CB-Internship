@@ -213,6 +213,26 @@
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
 }
+
+.business-options {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.business-options button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.business-options button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* Bottom Selection Bar */
 .selection-bar {
   position: fixed;
