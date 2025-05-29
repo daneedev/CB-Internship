@@ -13,16 +13,20 @@ aside {
 }
 
 aside h2 {
-    color: white;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 0.5px;
     padding: 0 20px;
     padding-bottom: 10px;
     margin-bottom: 0px;
     position: relative;
-}
+    text-decoration: none;
+    background: #8B5CF6;
+    background: linear-gradient(to top, #8B5CF6 43%, #0052CC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
+}
 
 aside br {
     display: block;
