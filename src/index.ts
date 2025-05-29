@@ -76,7 +76,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.get("/", function (req: Request, res: Response) {
-  res.send("Hello world!");
+  res.redirect("/auth/login");
 });
 
 app.use("/auth", authRoutes)
