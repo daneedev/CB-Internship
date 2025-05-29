@@ -370,6 +370,14 @@
   justify-content: center;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
 .modal-close:hover {
   color: white;
 }
