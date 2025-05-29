@@ -7,6 +7,7 @@ import Rating from "../models/Rating";
 import User from "../models/User";
 import sha256 from 'crypto-js/sha256';
 import Visit from "../models/Visit";
+import QRCode from "qrcode"
 
 const router = express.Router();
 
@@ -199,6 +200,9 @@ router.get(
     });
     
 
+    const qrCodeImage = await QRCode.toDataURL(`https://${process.env.DOMAIN}/survey/${business.id}`, {
+        errorCorrectionLevel: 'H', width: 300})
+
     res.render("dashboard/dashboard.html", {
         title: business.name,
         user: req.user,
@@ -216,6 +220,7 @@ router.get(
         surveyText: surveyText,
         visitsToday: visitsToday,
         visitsDifference: visitsToday - visitsYesterday,
+        qrCodeImage: qrCodeImage,
     });
   }
 );

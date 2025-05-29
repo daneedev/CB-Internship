@@ -1,8 +1,22 @@
 import express, { Request, Response } from 'express';
 import Rating from '../models/Rating';
 import Business from '../models/Business';
+import rateLimit from 'express-rate-limit';
 
 const router = express.Router();
+
+// Rate limit survey
+const surveyLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 5, // Limit each IP to 5 requests per windowMs
+    message: "Too many surveys submitted from this IP, please try again later.",
+    handler: (req: Request, res: Response) => {
+        res.status(429).render("message.html", {
+            title: "Too Many Requests",
+            errormsg: "You have exceeded the number of surveys allowed. Please try again later."
+        });
+    }
+});
 
 router.get("/:businessId", async (req: Request, res: Response) => {
     const businessId = req.params.businessId;
@@ -24,7 +38,7 @@ router.get("/:businessId", async (req: Request, res: Response) => {
     });  
 })
 
-router.post("/submit", function (req: Request, res: Response) {
+router.post("/submit", surveyLimiter, function (req: Request, res: Response) {
     const { 
         businessId, 
         usage_frequency, 

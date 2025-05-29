@@ -28,9 +28,27 @@
     <div class="clients">
       <h3><i class="fa-solid fa-link"></i>&nbsp;<a href="{{ surveyLink }}" target="_blank">{{ surveyText }}</a></h3>
       <p>{{ percentage }}</p>
+      <button class="btn-primary" id="qrCode"><i class="fa-solid fa-qrcode"></i></button>
     </div>
   </section>
 </section>
+
+<div class="modal-overlay" id="qrCodeModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">QR Code</h3>
+        <button class="modal-close" id="qrCodeClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img src="{{ qrCodeImage }}" alt="QR Code" class="qr-code-image">
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="qrCodeCancel">
+            Close
+          </button>
+        </div>
+    </div>
+  </div>
 
 <section class="firstRow row">
   <section class="content">
@@ -151,5 +169,6 @@
   </table>
   <script src="/public/js/charts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/public/js/qrCode.js"></script>
 </section>
 {% endblock %}
