@@ -43,7 +43,8 @@ router.get("/", checkAuth, async function (req: Request, res: Response) {
   );
 
   res.render("dashboard/businesses.html", {
-    title: "Businesses",
+    title: "InsightHub | Businesses",
+    page: "Businesses",
     user: req.user,
     success: req.flash("success"),
     error: req.flash("error"),
@@ -75,7 +76,8 @@ router.get("/profile", checkAuth, async function (req: Request, res: Response) {
     const gravatarHash = sha256(user.email)
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}`;
     res.render("dashboard/profile.html", {
-        title: "Profile",
+        title: "InsightHub | Profile",
+        page: "Profile",
         user: userDb,
         success: req.flash("success"),
         error: req.flash("error"),
@@ -105,7 +107,7 @@ router.get(
     const business = await Business.findByPk(req.params.businessId);
     if (!business) {
       res.render("message.html", {
-        title: "Business Not Found",
+        title: "InsightHub | Business Not Found",
         errormsg: "The business you are looking for does not exist.",
       });
       return;
@@ -113,7 +115,7 @@ router.get(
     const user = req.user as User;
     if (business.ownerId !== user.id) {
       res.render("message.html", {
-        title: "Access Denied",
+        title: "InsightHub | Access Denied",
         errormsg: "You do not have permission to access this business.",
       });
       return;
@@ -198,13 +200,22 @@ router.get(
             },
         },
     });
+
+    const surveyYear = await Rating.count({
+        where: {
+            businessId: business.id,
+            createdAt: {
+                [Op.gte]: new Date(new Date().getFullYear(), 0, 1),
+            },
+        },
+    })
     
 
     const qrCodeImage = await QRCode.toDataURL(`https://${process.env.DOMAIN}/survey/${business.id}`, {
         errorCorrectionLevel: 'H', width: 300})
 
     res.render("dashboard/dashboard.html", {
-        title: business.name,
+        title: `InsightHub | ${business.name}`,
         user: req.user,
         success: req.flash("success"),
         error: req.flash("error"),
@@ -221,6 +232,8 @@ router.get(
         visitsToday: visitsToday,
         visitsDifference: visitsToday - visitsYesterday,
         qrCodeImage: qrCodeImage,
+        surveyYear: surveyYear,
+        currentYear: new Date().getFullYear(),
     });
   }
 );
