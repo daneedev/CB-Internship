@@ -61,21 +61,6 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Active state for Dashboard link */
-nav a[href="/dashboard"] {
-    color: #8b5cf6;
-    background: rgba(139, 92, 246, 0.1);
-}
-
-nav a[href="/dashboard"]::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: #8b5cf6;
-}
 
 
 nav h3 {
