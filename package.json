@@ -41,7 +41,7 @@
     "@types/connect-flash": "^0.0.40",
     "@types/crypto-js": "^4.2.2",
     "@types/express": "^5.0.2",
-    "@types/express-session": "^1.18.1",
+    "@types/express-session": "^1.18.2",
     "@types/nunjucks": "^3.2.6",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
