@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             visitsInMonth(10),
             visitsInMonth(11),
             ],
-            borderColor: "#7b2cbf",
+            borderColor: "#57B9FF",
             tension: 0.5,
             fill: true,
             backgroundColor: "rgba(44, 47, 74, 0.2)",
